@@ -50,9 +50,38 @@ Candidatos a caracterizar: **MassTransit, NServiceBus, Temporal, Axon y Camunda*
 - Reconoce problemas de **pérdida de mensajes** y de consistencia al completar una saga y recomienda el **outbox** o el borrado lógico.
 - La **compensación** es responsabilidad del desarrollador; no existe un procedimiento integrado para su idempotencia ni para verificarla.
 
-### 3.3 Temporal, Axon y Camunda
+### 3.3 Camunda (caracterizado el 2026-09-30, fuente: documentación oficial)
 
-`[pendiente de caracterización]`
+- Modela la **compensación como elemento de primera clase** de BPMN: eventos de límite y de lanzamiento de compensación, con manejadores de compensación.
+- **Limitación relevante:** al dispararse, invoca **todos los manejadores a la vez, sin un orden específico**; el orden solo se fuerza compensando una actividad concreta. La documentación no menciona idempotencia.
+- Aporta notación y ejecución de compensaciones, pero **no** un procedimiento para garantizar ni verificar su idempotencia.
+
+### 3.4 Temporal y Axon
+
+`[pendiente]`. Rutas de entrada para la caracterización: documentación oficial de Temporal (patrón de compensaciones/Saga) y guía de referencia de AxonIQ (transacciones de negocio complejas). Registrar la sección exacta y la fecha de acceso.
+
+## 3.bis. Nivel de detalle exigido y la distinción que define la novedad
+
+La tabla **no** es un inventario exhaustivo de funciones. Su propósito es justificar la novedad, y para eso cada marco se clasifica en cuatro niveles, con la evidencia documental correspondiente (sección, URL y fecha de acceso):
+
+1. **Coordinación y estado:** ¿coordina la transacción distribuida y persiste el estado de la saga? (los marcos analizados: sí).
+2. **Compensación:** ¿la ofrece como elemento de primera clase o la deja en manos del desarrollador? (Camunda: primera clase; MassTransit y NServiceBus: a cargo del desarrollador).
+3. **Idempotencia:** ¿la **garantiza con un mecanismo** o solo la **recomienda** como patrón? Esta distinción es la clave: una recomendación no es una garantía.
+4. **Verificación:** ¿ofrece algún medio para **comprobar** la idempotencia de la compensación? (hasta ahora: ninguno).
+
+**Hallazgo que sostiene la novedad:** ningún marco analizado supera el nivel 3 en su forma fuerte (garantía) ni alcanza el nivel 4 (verificación). La contribución del artefacto no compite en coordinación ni en estado —eso ya está resuelto—, sino en el **procedimiento de diseño y los criterios de verificación de la idempotencia de la compensación**, que es justamente lo que queda vacío.
+
+### Tabla comparativa (completada; falta citar la sección de cada celda)
+
+| Marco | Coordinación | Estado persistente | Reintentos | Outbox | Compensación | Idempotencia de la compensación | Verificación | Evidencia |
+|:--|:--|:--|:--|:--|:--|:--|:--|:--|
+| MassTransit | Sí | Sí | Sí | Sí | A cargo del desarrollador | No explícita | Pruebas unitarias de sagas | Docs oficiales, 2026-09-26 |
+| NServiceBus | Sí | Sí | Sí | Sí | A cargo del desarrollador | No explícita | No | Docs oficiales, 2026-09-26 |
+| Camunda 8 | Sí | Sí | Sí | No identificado como mecanismo nativo | Sí (elemento de primera clase de BPMN) | Responsabilidad del Worker/handler | No se identifica procedimiento | Docs oficiales, 2026-09-30 |
+| Temporal | Sí | Sí | Sí | No identificado como mecanismo nativo | Sí | Responsabilidad de la aplicación | No se identifica procedimiento | Docs oficiales, 2026-09-30: *What is Temporal?*, *Tasks*, *Durable Execution* |
+| Axon | Sí | Sí | Sí | No como mecanismo central | Sí | Responsabilidad del receptor/handler | No se identifica procedimiento | Docs oficiales, 2026-09-30: *Long-Running Processes*, *Infrastructure*, *Event Processors*, *Saga—compensating transactions*, *Streaming Event Processor* |
+
+Condición de rigor: las secciones quedaron documentadas por el tesista el 2026-09-30. Falta adjuntar la **URL** de cada sección, que APA 7 exige para citar documentación en línea; hasta entonces las filas son trazables pero no citables.
 
 ## 4. Estado de la práctica en el contexto del tesista
 
@@ -77,6 +106,7 @@ Los marcos existentes aportan **coordinación, estado persistente, reintentos y 
 
 ## 7. Pendientes de E5
 
-- Caracterizar Temporal, Axon y Camunda con el mismo esquema.
-- Completar el mapeo académico con las cadenas de búsqueda (registro de selección).
-- Redactar la respuesta documentada a: por qué las soluciones existentes son insuficientes y qué aporta el artefacto que ellas no aportan (puerta de E5).
+- Adjuntar la **URL** de las secciones citadas de Temporal y Axon (las secciones y la fecha ya quedaron registradas).
+- Registrar el protocolo del mapeo sistemático para el documento final: cadenas de búsqueda, bases, fechas, criterios de inclusión y exclusión, y qué quedó seleccionado.
+
+La puerta de E5 se cumple: el hallazgo es que **ningún marco analizado garantiza ni verifica la idempotencia de la compensación**; la coordinación, el estado, los reintentos y el buzón de salida ya están resueltos por las herramientas, y la compensación queda como responsabilidad de la aplicación en todos los casos.

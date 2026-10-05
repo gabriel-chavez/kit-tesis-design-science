@@ -18,13 +18,13 @@
 | E2. Delimitación | cerrada | `02_delimitacion.md` | 2026-09-26 |
 | E3. Perfil de investigación DS | cerrada | `03_perfil_ds.md` | 2026-09-26 |
 | E4. Marco teórico | cerrada | `04_marco_teorico.md` | 2026-09-26 |
-| E5. Estado del arte | en curso | `05_estado_del_arte.md` | |
-| E6. Diagnóstico con indicadores | en curso | `06_diagnostico.md` | |
-| E7a. Alternativas de solución | pendiente | `07a_alternativas.md` | |
-| E7b. Requisitos del artefacto | pendiente | `07b_requisitos.md` | |
-| E7c. Diseño del artefacto | pendiente | `07c_diseno_artefacto.md` | |
-| E7d. Plan de construcción y versiones | pendiente | `07d_plan_construccion.md` | |
-| E7e. Construcción y verificación interna | pendiente | `07e_construccion_verificacion.md` | |
+| E5. Estado del arte | cerrada | `05_estado_del_arte.md` | 2026-09-30 |
+| E6. Diagnóstico con indicadores | cerrada | `06_diagnostico.md` | 2026-10-04 |
+| E7a. Alternativas de solución | cerrada | `07a_alternativas.md` | 2026-10-04 |
+| E7b. Requisitos del artefacto | cerrada | `07b_requisitos.md` | 2026-10-04 |
+| E7c. Diseño del artefacto | cerrada | `07c_diseno_artefacto.md` | 2026-10-04 |
+| E7d. Plan de construcción y versiones | cerrada | `07d_plan_construccion.md` | 2026-10-05 |
+| E7e. Construcción y verificación interna | en curso | `07e_construccion_verificacion.md` | |
 | E7f. Ficha del artefacto | pendiente | `07f_ficha_artefacto.md` | |
 | E8. Evaluación | pendiente | `08_evaluacion.md` | |
 | E9. Enlace propuesta ↔ solución | pendiente | `09_enlace_solucion.md` | |
@@ -44,16 +44,20 @@
 | 2026-09-26 | Se adopta el **mapeo sistemático** como protocolo de E5 y se fijan los criterios de superioridad: cobertura de modos de fallo, garantía de idempotencia, verificabilidad y costo de implementación. | Cierre parcial de E5. El protocolo permite delimitar la novedad del artefacto frente a las soluciones existentes. |
 | 2026-09-26 | Se registra la línea base de la práctica actual: la pasarela reintenta con una espera fija y, al agotar los intentos, produce un error no controlado; no hay diseño explícito de idempotencia ni procedimiento formal de compensación. E5 y E6 se trabajan en paralelo, según el cronograma. | Evidencia directa del problema; insumo de la caracterización de E6. |
 | 2026-09-26 | Se adoptan **dos líneas base** en E6: retrospectiva (datos históricos de 2025, solo indicadores instrumentados) y experimental (reproducción de la conducta actual en el entorno controlado). Se distinguirá "no ocurrió" de "no se registró". Se fijan los seis escenarios de evaluación. | El sistema no registra compensaciones ni duplicados; sin la línea base experimental los criterios de idempotencia no serían evaluables. Los criterios de éxito quedaron congelados antes de construir (anti-HARKing). |
+| 2026-09-30 | Se cierra el estado del arte con la comparación de MassTransit, NServiceBus, Camunda 8, Temporal y Axon. Hallazgo: ningún marco garantiza ni verifica la idempotencia de la compensación; todos la dejan a la aplicación. | Cierre de E5. La novedad del artefacto queda delimitada en el diseño y la verificación de la idempotencia, no en la coordinación. Quedan por citar las filas de Temporal y Axon (afirmaciones del tesista) y registrar el protocolo del mapeo. |
+| 2026-10-04 | Se cierra el diagnóstico con evidencia de código, configuración, tickets (69 casos EFECTIVIZAR en 2025), tiempo medio de resolución (9,67 h) y reproducción de la conducta actual. Se documentan seis riesgos y el comportamiento por escenario. | Cierre de E6. Hallazgo central: el sistema no distingue "no procesado" de "procesado con respuesta perdida", no reintenta ante timeout y no verifica después del error. Pendientes que no bloquean E7: registros 2025 para I2, línea base experimental de I3, resolver 1 vs 2 intentos y justificar el proxy de I1/I4. Fecha comprometida: 2026-10-05. |
+| 2026-10-04 | Se elige la **Alternativa A** (compensación idempotente con llave de idempotencia, bitácora de estado y verificación por consulta). Se confirma que BUSA permite consultar el estado de una operación. | Cierre de E7a. La verificación permite distinguir, ante respuesta perdida, entre operación procesada, no procesada y estado por reconciliar. Se descartan B, C y D. |
+| 2026-10-04 | Se cierran los requisitos: llave derivada de `(TRAMITE_NUMERO, GESTION)`; estados de BUSA confirmados (procesado / no procesado / PENDIENTE indeterminado hasta 20 min); bitácora en tabla nueva; prioridades y trade-offs confirmados. | Cierre de E7b. Todo requisito es rastreable al problema, tiene métrica y los trade-offs están declarados. |
+| 2026-10-04 | Se cierra el diseño con nueve componentes, diagrama, siete más dos decisiones y la definición de reconciliación. Se acota la compensación a **anular el QR no pagado** (BUSA no ofrece reversión de pago) y la reconciliación se apoya en los **servicios de Windows** existentes. | Cierre de E7c. La bitácora reutiliza `T_QR_SOLICITUD` y `T_QR_SOLICITUD_EJECUCION_INTENTOS` y añade una tabla de idempotencia de compensaciones. Condición de contorno: no cubre reversión de pagos ya ejecutados. |
+| 2026-10-05 | Se cierra el plan de construcción: MVP con K1–K9, versiones V1 (05/10), V2 (06/10) y V3 (07/10), cierre de construcción y verificación el 08/10. El medio de verificación es un **doble de BUSA** sobre datos sintéticos; el servicio real no se usa en los experimentos. | Cierre de E7d. Criterio de suficiencia explícito y matriz de riesgos con mitigación. Se advierte que el calendario es muy ajustado. |
+| 2026-10-05 | Se salda la deuda de E6: número real de intentos (5, hasta 10 en meses pico), I2 de 2025 (4.302 errores y 226 timeouts), justificación del proxy I1/I4 y entrevista al personal de soporte. Se registra el hallazgo de la reversión a nivel de banco, fuera de TI, como condición de contorno. Se confirma el calendario de construcción y evaluación. Se descarta la cifra de 10.000 ocurrencias por error de redacción. | E6 consolidada. Queda la línea base experimental (2026-10-06). |
 
 ## Preguntas abiertas
 
-- Caracterización de Temporal, Axon y Camunda para el estado del arte (E5).
+- Línea base experimental de I3, I6 e I7 (sesión del 2026-10-06).
+- Adjuntar las URL de las secciones citadas de Temporal y Axon (E5).
 - Registro de selección del mapeo sistemático (E5).
-- Definición operacional de los indicadores, sus fuentes y su línea base (E6).
-- Comportamiento actual del sistema ante cada escenario de fallo y su frecuencia (E6).
-- Operacionalización de la aplicabilidad (E6/E8).
 
 ## Próximo paso
 
-- E5 (en paralelo): completar la caracterización de herramientas y el mapeo académico.
-- E6: documentar la evidencia del problema y fijar indicadores, fuentes, línea base y criterios de éxito antes de construir.
+- E7e: construir V1, V2 y V3 y reportar la evidencia de V1–V8 con el registro de cambios; en paralelo, la sesión de línea base experimental del 2026-10-06.
