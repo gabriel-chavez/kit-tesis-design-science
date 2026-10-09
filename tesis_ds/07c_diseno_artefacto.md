@@ -62,8 +62,9 @@ flowchart TD
 | Dc5 | Compensación identificada por **`(operación, motivo)`** con registro previo | Marcar por marca de tiempo | El par es determinista y reconoce la repetición; la marca de tiempo es frágil ante reintentos casi simultáneos | F5 |
 | Dc6 | **No bloquear** el hilo: reemplazar la espera bloqueante por espera no bloqueante o por cola | Mantener `Thread.Sleep` | El bloqueo degrada el servidor bajo carga | C4 |
 | Dc7 | Ordenar las compensaciones (inverso y dependencias) | Orden arbitrario | El orden arbitrario deja operaciones inconsistentes; Camunda, por ejemplo, no garantiza orden | F6 |
-| Dc8 | La **compensación se limita a anular el QR no pagado**; no hay reversión de pago | Suponer una reversión del pago | BUSA solo expone la anulación del QR antes de ser pagado; para un QR ya pagado la acción correcta es continuar (efectivizar), no compensar | F5 |
+| Dc8 | La **acción compensatoria disponible en el contexto** es anular el QR no pagado; no existe reversión de pago (condición de contorno) | Suponer una reversión del pago | BUSA solo expone la anulación del QR antes de ser pagado; para un QR ya pagado la acción correcta es continuar (efectivizar), no compensar | F5 |
 | Dc9 | La **reconciliación** se ejecuta con los **servicios de Windows** existentes | Construir un planificador nuevo | Ya existe la infraestructura de tareas programadas (`WinServiceSoatConsultaAnulaPagosQR`, `WinServiceSoatAnulaQR`); reutilizarla reduce costo y riesgo | F7, C5 |
+| Dc13 | La **compensación se define como agnóstica a la acción**: el método garantiza la idempotencia de cualquier acción compensatoria registrada en la bitácora, y la **anulación del QR no pagado es la exemplar evaluada** | Limitar la compensación a la anulación (A) o definirla como reversión interna (B) | Preserva el nivel de clase (transferibilidad) sin fingir una reversión de pago que BUSA no ofrece; la anulación es la instancia concreta disponible para evaluar | F5 |
 
 ## 6. Trazabilidad requisito → componente → decisión
 
@@ -106,6 +107,13 @@ flowchart TD
 **Disparador:** los servicios de Windows existentes (Dc9).
 
 **Alcance de la compensación (Dc8):** anular el QR no pagado. Para un QR pagado, la resolución es continuar el flujo, no revertir.
+
+## 7.ter. Refinamientos tras la línea base experimental (2026-10-08)
+
+- **Dc10. Imponer unicidad en la base** sobre la llave lógica (índice único sobre `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)`), porque hoy hay 44 pares duplicados y ningún índice único. Sin esta condición, la idempotencia no puede garantizarse aunque el servicio lo sea.
+- **Dc11. Cubrir las dos rutas de entrada** (RpcA `CPagoSimple` y RpcB `CNPagosQR`), o declarar y resolver su divergencia de reintentos.
+- **Dc12. Apoyarse en el servicio de convergencia existente** (`WinServiceSoatConsultaPagosQR`, cada 10 s) para la reconciliación, en lugar de introducir uno nuevo.
+- **Nota para E8:** el doble de evaluación **no debe ser idempotente por defecto**, o debe permitir medir el efecto duplicado; de lo contrario el método no puede demostrar su aporte.
 
 ## 8. Pendientes de E7c
 

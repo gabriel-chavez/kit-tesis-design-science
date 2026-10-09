@@ -1,86 +1,96 @@
 # E6. Diagnóstico con indicadores y criterios
 
-> **Estado:** cerrada el 2026-10-04 y consolidada el 2026-10-05 con la línea base retrospectiva, la entrevista y el hallazgo de la reversión bancaria. Queda pendiente únicamente la línea base experimental (I3, I6, I7), prevista para el 2026-10-06, y aclarar la discrepancia de conteo de I2. Los criterios de éxito se congelaron **antes** de construir.
+> **Estado:** cerrada. Línea base **retrospectiva** (2025) y **experimental** (2026-10-08) completas. El detalle experimental, con su evidencia y sus declaraciones de alcance, está en el anexo `06_anexo_linea_base_experimental.md`. Los criterios de éxito se congelaron **antes** de construir.
 
 ## 1. Evidencia del problema (multi-fuente)
 
 | Fuente | Evidencia | Estado |
 |:--|:--|:--|
-| Literatura | La idempotencia y la deduplicación son requisitos estructurales con reintentos y mensajería al-menos-una-vez (Helland, 2012); la verificación de idempotencia tiene antecedente (Hummer et al., 2013) | Documentada |
-| Código y configuración | `CPagoSimple.cs` (líneas 182–209) y `Web.config` (líneas 42–43): el reintento solo se dispara ante `ResultCode` 0003/0004; con `NumeroIntentos = 1`, `MilisegundosDelay = 1000` | Documentada |
-| Comportamiento observado | Ante timeout o caída del servicio, se lanza excepción, se registra y se retorna el error 10002; **no se reintenta**. No se distingue "no procesado" de "procesado con respuesta perdida" | Documentada |
-| Registros | `log4net 2.0.11`, `D:\IIS_Log4Net\WebServicePagoSimple\logInternos_yyyy-MM-dd.txt`; se registran solicitud, respuesta y excepciones, pero **no** el número de intento ni su resultado | Documentada |
-| Tickets de soporte | 69 casos tipo EFECTIVIZAR en 2025 (BD_HELP_DESK → T_TICKET + T_REGISTRO) | Documentada |
-| Personal de soporte | Entrevista realizada al personal de soporte de software (2026-10-05); ocho preguntas sobre manifestación del problema, intervención manual y registros deseables | Documentada |
+| Literatura | La idempotencia y la deduplicación son requisitos estructurales (Helland, 2012); la verificación de idempotencia tiene antecedente (Hummer et al., 2013) | Documentada |
+| Código y configuración | Dos rutas de reintento divergentes (RpcA `CPagoSimple`, RpcB `CNPagosQR`); sin timeout de transporte configurado; espera bloqueante de 1 s | Documentada |
+| Diagnóstico retrospectivo 2025 | 4.302 errores no controlados y 226 timeouts | Documentada |
+| Tickets de soporte | 69 casos EFECTIVIZAR (proxy) | Documentada |
+| Entrevista al personal de soporte | Realizada el 2026-10-05 | Documentada |
+| Línea base experimental | Réplica del algoritmo + doble HTTP sobre datos sintéticos; 16 pruebas, 14 operaciones, 34 solicitudes | Documentada (anexo) |
 
-## 2. Advertencia metodológica (subregistro)
+## 2. Advertencias metodológicas
 
-La ausencia de instrumentación **no prueba la ausencia del problema**: solo prueba que la organización no puede detectarlo. Se distingue entre **no ocurrió** y **no se registró**. Además, los tickets EFECTIVIZAR son un **proxy indirecto** de operaciones inconsistentes: registran la intervención manual, no necesariamente el estado inconsistente, por lo que la cifra de 69 es un límite inferior sujeto a justificación.
+**Subregistro.** La ausencia de instrumentación no prueba la ausencia del problema: solo prueba que no puede detectarse. Se distingue **no ocurrió** de **no se registró**.
 
-## 3. Dos líneas base
+**Sobre los tickets (aclaración del tesista).** Los tickets no son un registro exhaustivo ni individualizado: un mismo ticket puede agrupar varias operaciones. Por eso la cantidad de tickets **no equivale** a la cantidad de incidentes ni a la de operaciones afectadas; se usan como evidencia de intervenciones documentadas y se analizan **por separado** de los errores no controlados, sin considerarlos equivalentes ni directamente comparables. La ausencia de ticket no demuestra la ausencia de incidente.
 
-1. **Retrospectiva** (2025): solo indicadores instrumentados.
-2. **Experimental** (prospectiva): se reproduce la conducta actual en el entorno controlado sobre los seis escenarios, para los indicadores no instrumentados (I3, I6, I7).
+## 3. Dos líneas base (completas)
 
-## 4. Indicadores
+1. **Retrospectiva (2025):** datos de producción de solo lectura.
+2. **Experimental (2026-10-08):** réplica del algoritmo y doble HTTP en entorno aislado; **no se contactó BUSA real** (`172.30.140.139:443` alcanzable, deliberadamente no invocado) y **no se modificó producción** (solo `SELECT`).
 
-| # | Indicador | Definición operacional | Unidad | Fuente | ¿2025? | Valor / línea base | Valor esperado |
-|:--|:--|:--|:--|:--|:--|:--|:--|
-| I1 | Operaciones con estado inconsistente | Operaciones que terminaron en estado distinto al esperado tras agotar los intentos | por año | Tickets EFECTIVIZAR (proxy) | Sí (indirecto) | ~69 | 0 en escenarios cubiertos |
-| I2 | Errores no controlados | Operaciones que terminan en error no controlado (10002) | por año | Registros de aplicación | Sí | 2025: 4.302 errores y 226 timeouts | 0 en escenarios cubiertos |
-| I3 | Tasa de reintentos | Reintentos por operación | razón | **No instrumentado** | No | Experimental | Reducir sin perder éxito |
-| I4 | Intervenciones manuales | Correcciones manuales de operaciones inconsistentes | por año | Tickets de soporte | Sí | 69 | 0 en escenarios cubiertos |
-| I5 | Tiempo de resolución | Tiempo medio para resolver una operación inconsistente | horas | T_TICKET.TIEMPO_RESPUESTA | Sí | 9,67 h | Reducir |
-| I6 | Compensaciones con efecto duplicado | Compensaciones cuya repetición produce un efecto adicional | por escenario | **No instrumentado** | No | Experimental | 0 |
-| I7 | Cobertura de modos de fallo | Modos anticipados sobre el total de la taxonomía | proporción | Entorno controlado | No | Experimental | Total del conjunto fijado |
+## 4. Indicadores (estado final)
 
-## 5. Mecanismo actual de reintento (evidencia de código y configuración)
+| # | Indicador | Valor | Alcance / advertencia |
+|:--|:--|:--|:--|
+| I1 | Operaciones con estado inconsistente | ~69 (proxy) | Límite inferior; tickets agrupan varios casos |
+| I2 | Errores no controlados (2025) | 4.302; 226 timeouts | Concentrados en enero (1.865) y diciembre (1.843) |
+| I3 | Tasa de reintentos | **No instrumentado en producción** | Tasas observadas por rama de código, denominadores de 2 a 4 operaciones; no estiman volumen |
+| I4 | Intervenciones manuales (2025) | 69 tickets | Proxy; subrepresenta |
+| I5 | Tiempo de resolución | 9,67 h | `T_QR_SOLICITUD.TIEMPO_RESPUESTA` |
+| I6 | Compensaciones con efecto duplicado | Sin efecto adicional en los contadores del doble | Mide el doble, diseñado idempotente por referencia; **no demuestra idempotencia de BUSA** |
+| I7 | Cobertura de modos de fallo | 6/6 = 100 % | Sobre el conjunto definido por el investigador |
 
-- `NumeroIntentos = 5` en el `Web.config` de producción, y hasta **10** en los meses de mayor transaccionalidad según el personal; **no existe registro de esa variación**. Con 5 reintentos hay hasta seis llamadas por operación.
-- `MilisegundosDelay = 1000`: intervalo fijo de 1 segundo, con `Thread.Sleep`, que **bloquea el hilo** del servidor web.
-- Disparador: `ResultCode == "0003"` (excepción genérica) o `"0004"` (excepción de base de datos).
-- Terminación: al alcanzar el número de intentos o cuando el `ResultCode` deja de ser 0003/0004.
-- Error no controlado: si `mensajeError` no está vacío, retorna el error **10002** ("El servicio no está disponible, por favor intente de nuevo más tarde").
-- No hay manejo posterior al reintento; el flujo continúa hacia la validación de firma y puede terminar en 10003.
-- No hay retardo progresivo (backoff): el intervalo es siempre 1 segundo.
+## 5. Mecanismo de reintento actual (dos rutas divergentes)
 
-**Aclaración (2026-10-05):** el valor real en producción es `NumeroIntentos = 5` (hasta 10 en meses pico), no 1 ni 2. La variación estacional **no está registrada**, lo que constituye en sí mismo un problema de trazabilidad. La cifra de I2 queda en **4.302 errores no controlados** y 226 timeouts en 2025; la mención de 10.000 ocurrencias fue un error de redacción del tesista y se descarta.
-
-## 6. Comportamiento por escenario
-
-| Escenario | Estado final | Código |
+| | Ruta A (`CPagoSimple`) | Ruta B (`CNPagosQR`) |
 |:--|:--|:--|
-| BUSA responde con éxito | Flujo normal | — |
-| BUSA responde 0003/0004 | Se reintenta una vez; si sigue fallando, el flujo continúa con la respuesta errónea (posiblemente datos inválidos) | — |
-| BUSA no responde (timeout o red caída) | Retorna error no controlado | 10002 |
-| BUSA procesó pero se perdió la respuesta | Retorna error no controlado, **indistinguible** del caso anterior | 10002 |
-| Error en la firma digital del XML | Error | 10001 |
-| Error en la validación de la firma de respuesta | Error | 10003 |
+| Clave | `NumeroIntentos`, editado manualmente en producción (de 1 a 10 según la transaccionalidad; 1 al momento de la inspección) | `RepetirIntento` = true (no existe `NumeroIntentos`) |
+| Mecanismo | bucle `while` | reintento único dentro de `catch` |
+| Dispara ante timeout / transporte | **No** | **Sí** (cualquier excepción) |
+| Dispara ante `0003`/`0004` | Sí | No evalúa el código |
+| Espera | 1000 ms (`Thread.Sleep`, bloqueante) | 1000 ms (bloqueante) |
 
-**Hallazgo central:** el sistema no puede distinguir "no se procesó" de "se procesó pero se perdió la respuesta". Ante el segundo caso **no reintenta y no verifica**: cualquier reintento posterior (manual o del usuario) puede **duplicar** el QR o el pago. La idempotencia no está diseñada ni verificada.
+**Hallazgo de la discrepancia:** la misma condición de fallo produce comportamientos opuestos según la ruta de entrada. Cualquier método de compensación idempotente debe resolver esta divergencia antes de aplicarse.
 
-## 7. Reproducción de la conducta actual (base de la línea base experimental)
+**Sin timeout de transporte configurado:** se usa el valor por defecto de WCF.
 
-- Cliente WCF `wsUniQrService.QRServiceClient`, método `BunApi(string mensajeSolicitud)`.
-- Endpoint `https://172.30.140.139/UNIQRService/UNIQRService.svc`; binding `BasicHttpsBinding_IQRService`.
-- **Sin timeout personalizado:** usa el valor por defecto de WCF (1 minuto).
-- Reproducción: reintento con espera fija sobre el mismo conjunto de seis escenarios.
+**Valor dinámico (2026-10-08):** `NumeroIntentos` en producción **no es fijo**: el encargado lo ajusta manualmente hasta 10 en los meses de mayor transaccionalidad, según la carga. Al momento de la inspección estaba en 1; la línea base experimental usó 5 como parámetro de sensibilidad, sin tocar producción. La **ausencia de registro de estos cambios** es en sí misma un problema de trazabilidad y refuerza el requisito F9 (telemetría).
+
+## 6. Comportamiento por escenario (resumen)
+
+| Escenario | Estado final en el cliente |
+|:--|:--|
+| Éxito | Normal |
+| `0003`/`0004` | Reintenta según la ruta; puede continuar con datos inválidos |
+| Timeout o respuesta perdida | **Indeterminado** (10002 en RpcA, 0 en RpcB) |
+| Procesada con respuesta perdida | **Indeterminado**, indistinguible del anterior |
+| Anulación de QR no pagado | `0000` (anulada) |
+| Anulación de QR pagado | `0009` (rechazada, fuera de alcance) |
+
+## 7. Hallazgos de la línea base experimental
+
+| # | Hallazgo | Tipo |
+|:--|:--|:--|
+| H1 | No puede distinguir "no procesada" de "procesada con respuesta perdida" | Sistema |
+| H2 | Rutas de reintento divergentes entre RpcA y RpcB | Sistema |
+| H3 | La base de producción no garantiza unicidad: 44 pares duplicados en 892.970 filas y ningún índice único sobre la llave lógica | Sistema |
+| H4 | El mecanismo de convergencia existe (`WinServiceSoatConsultaPagosQR`, cada 10 s) pero **no se invoca desde los caminos de error** | Sistema |
+| H5 | `NumeroIntentos = 1` impide converger ante errores de negocio transitorios resueltos en el 2.º o 3.er intento | Banco de pruebas |
+| H6 | Aumentar los intentos **no resuelve** la incertidumbre de respuesta perdida (siguen 1 sola solicitud) | Banco de pruebas |
 
 ## 8. Riesgos identificados
 
 | Riesgo | Descripción | Severidad |
 |:--|:--|:--|
-| Sin verificación posterior al error | No se comprueba si la operación se procesó cuando se pierde la respuesta | Alta |
-| Posible duplicación | Un reintento manual o del usuario podría duplicar la operación | Alta |
-| Sin manejo posterior al reintento | Si el reintento falla con 0003/0004, el flujo continúa con datos posiblemente inválidos | Alta |
-| Sin timeout personalizado | Espera hasta 1 minuto por defecto de WCF | Media |
-| Bloqueo de hilo | `Thread.Sleep(1000)` por cada reintento (hasta 5, y 10 en meses pico) bloquea el hilo del servidor | Alta |
-| Reintento sin retardo progresivo | Intervalo fijo de 1 segundo | Baja |
+| Sin verificación posterior al error | No se comprueba si la operación se procesó | Alta |
+| Posible duplicación | Reintento manual o del usuario | Alta |
+| Sin manejo posterior al reintento | El flujo continúa con datos posiblemente inválidos | Alta |
+| Rutas de reintento divergentes | Comportamientos opuestos ante la misma falla | Alta |
+| BD sin unicidad | 44 pares duplicados, sin índice único | Alta |
+| Sin timeout configurado | Espera el valor por defecto de WCF | Media |
+| Bloqueo de hilo | `Thread.Sleep(1000)` por reintento | Media |
+| Reintento sin retardo progresivo | Intervalo fijo de 1 s | Baja |
 
 ## 9. Criterios de éxito (congelados el 2026-09-26, antes de construir)
 
 **Utilidad:** (1) compensaciones con efecto duplicado = 0; (2) operaciones con estado inconsistente = 0; (3) repetir una compensación deja el estado final idéntico al de una ejecución única, en N de N escenarios.
-**Contribución:** (4) aplicabilidad del método medida por cobertura de la taxonomía de fallos y aplicación independiente por practicantes.
+**Contribución:** (4) aplicabilidad medida por cobertura de la taxonomía de fallos y aplicación independiente por practicantes.
 
 ## 10. Conjunto de escenarios (fijado el 2026-09-26)
 
@@ -89,33 +99,24 @@ La ausencia de instrumentación **no prueba la ausencia del problema**: solo pru
 3. Pérdida de respuesta.
 4. Solicitud duplicada.
 5. Reintento posterior a un éxito real.
-6. Fallo durante la compensación.
+6. Fallo durante la repetición de una anulación.
 
-## 11. Estado de la línea base (2026-10-05)
+## 11. Entrevista al personal de soporte (2026-10-05)
 
-**Resuelto:**
+Confirma H1 con lenguaje operativo ("no siempre se sabe si la operación se procesó"; reintentar sin verificar "existe el riesgo de generar una operación duplicada"). La información que el personal considera valiosa registrar coincide con los componentes K2 y K9 del método.
 
-- **I2:** valor de 2025 confirmado — 4.302 errores no controlados y 226 timeouts. Concentrados en enero (1.865) y diciembre (1.843), lo que coincide con los picos de renovación del seguro obligatorio.
-- **Número de intentos:** 5 en producción, hasta 10 en meses pico; la variación no está registrada.
-- **Proxy I1/I4:** justificado; los 69 tickets son intervenciones que no equivalen necesariamente a inconsistencias y subrepresentan el total.
-- **Entrevista al personal de soporte:** realizada y documentada.
+## 12. Reversión a nivel de banco (condición de contorno)
 
-**Pendiente:**
+Existen casos en que el banco debita al cliente, la pasarela no se entera y la venta no se efectiviza; la conciliación con el banco puede revertir el débito, **sin intervención de TI**. El método cubre la operación de la pasarela, no la conciliación financiera con el banco. Evidencia del costo real del problema.
 
-- **I3, I6 e I7:** línea base experimental (sesión del 2026-10-06).
+## 13. Implicaciones para el diseño y la evaluación (insumo de E7)
 
-## 12. Entrevista al personal de soporte (2026-10-05)
+1. **Cubrir las dos rutas** (RpcA y RpcB) o declarar y resolver la divergencia.
+2. **Reforzar la unicidad** en la base (índice único sobre la llave lógica) como condición de la idempotencia.
+3. **Apoyarse en el servicio de convergencia existente** (`WinServiceSoatConsultaPagosQR`) en lugar de introducir uno nuevo.
+4. **Para la evaluación del método:** el doble de evaluación **no debe ser idempotente por defecto**, o debe permitir medir el efecto duplicado; si el doble ya deduplica, el método no puede demostrar su aporte.
+5. **La anulación de un QR no pagado no equivale a una compensación Saga:** la idempotencia de la compensación debe verificarse sobre una compensación real en la evaluación, no sobre la anulación.
 
-Perfil: personal de soporte de software con conocimiento del flujo de pagos por QR. Hallazgos:
+## 14. Pendientes
 
-- Los problemas se manifiestan por interrupción de comunicación, demora o falta de respuesta del servicio externo; **no siempre se sabe si la operación se procesó**.
-- Antes de volver a solicitar, el personal debe determinar qué ocurrió con la operación anterior; si se reprocesa sin verificar, **existe riesgo de duplicar**.
-- Los 69 tickets no equivalen a 69 inconsistencias ni representan todos los casos; parte de las situaciones se resuelven sin ticket formal.
-- El personal confirma la utilidad de **consultar el estado real antes de reintentar**.
-- Información que considera valiosa registrar: identificación de la operación, intentos, estado, motivo, respuesta del servicio externo y acciones posteriores. Esto respalda directamente los componentes K2 y K9.
-
-## 13. Hallazgo adicional: la reversión a nivel de banco (fuera de TI)
-
-Existen casos en los que el **banco debita al cliente por QR, la pasarela no se entera y la venta no se efectiviza**; durante la conciliación con el banco puede revertirse el débito (por ejemplo, si el cliente ya compró por otros medios). Ese proceso **no involucra a soporte de TI**.
-
-**Implicación:** existe una reconciliación **a nivel de banco**, distinta y posterior a la de la pasarela, ejecutada por el área de negocio. Se declara como **condición de contorno**: el método cubre la operación de la pasarela, no la conciliación financiera con el banco. A la vez, es evidencia del costo real del problema: débitos sin venta.
+- Aclarar la relación entre errores no controlados (4.302) y timeouts (226) — si los timeouts son un subconjunto.
