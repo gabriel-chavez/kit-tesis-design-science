@@ -24,9 +24,9 @@
 | E7b. Requisitos del artefacto | cerrada | `07b_requisitos.md` | 2026-10-04 |
 | E7c. Diseño del artefacto | cerrada | `07c_diseno_artefacto.md` | 2026-10-04 |
 | E7d. Plan de construcción y versiones | cerrada | `07d_plan_construccion.md` | 2026-10-05 |
-| E7e. Construcción y verificación interna | en curso | `07e_construccion_verificacion.md` | |
-| E7f. Ficha del artefacto | pendiente | `07f_ficha_artefacto.md` | |
-| E8. Evaluación | pendiente | `08_evaluacion.md` | |
+| E7e. Construcción y verificación interna | cerrada | `07e_construccion_verificacion.md` | 2026-10-20 |
+| E7f. Ficha del artefacto | cerrada | `07f_ficha_artefacto.md` | 2026-10-20 |
+| E8. Evaluación | en curso | `08_evaluacion.md` | |
 | E9. Enlace propuesta ↔ solución | pendiente | `09_enlace_solucion.md` | |
 | E10. Contribución y conclusiones | pendiente | `10_contribucion_conclusiones.md` | |
 
@@ -53,13 +53,21 @@
 | 2026-10-05 | Se salda la deuda de E6: número real de intentos (5, hasta 10 en meses pico), I2 de 2025 (4.302 errores y 226 timeouts), justificación del proxy I1/I4 y entrevista al personal de soporte. Se registra el hallazgo de la reversión a nivel de banco, fuera de TI, como condición de contorno. Se confirma el calendario de construcción y evaluación. Se descarta la cifra de 10.000 ocurrencias por error de redacción. | E6 consolidada. Queda la línea base experimental (2026-10-06). |
 | 2026-10-08 | Se ejecuta la línea base experimental (réplica del algoritmo + doble HTTP; sin contacto con BUSA real ni cambios en producción). I3 por rama, I6 sin efectos adicionales en el doble, I7 6/6. Se descubren dos rutas de reintento divergentes (RpcA/RpcB), 44 pares duplicados sin índice único, y que el servicio de convergencia existe pero no se invoca tras el fallo. | E6 completa. Refina el diseño (Dc10–Dc12) y exige que el doble de evaluación no sea idempotente por defecto. Contradicción a resolver: `NumeroIntentos` de producción (1 por inspección frente a 5/10 por testimonio). |
 | 2026-10-08 | Se resuelve la contradicción de `NumeroIntentos`: el valor de producción es **dinámico**, editado a mano hasta 10 según la transaccionalidad; la prueba usó 5. Se adopta la definición de compensación **agnóstica a la acción (C), con la anulación del QR no pagado como exemplar (A)**. | Cierre de la delimitación del artefacto. La definición agnóstica preserva el nivel de clase sin fingir una reversión de pago que BUSA no ofrece. La variabilidad no registrada del parámetro refuerza el requisito F9 (telemetría). |
+| 2026-10-13/14 | Se construye y verifica el artefacto (E7e): librería `E7e_MetodoCompensacion` (`netstandard2.0`) con K1–K9 sobre puertos; V1–V8 cumplen; el **control negativo** confirma la neutralidad del doble (sin K5: N efectos; con K5: 1); el **cliente WCF real** de BUSA enlaza con el doble (2/2); se documentan 9 cambios y 8 defectos detectados por contradicción de evidencia. | **E7e no cerrada:** falta el *walkthrough* de un practicante independiente (criterio 4), que no puede ejecutar el constructor. Integración parcial: la cadena completa no se ejecutó, el DDL de Dc10 no se aplicó y los adaptadores reales no se escribieron. Todo declarado. |
+| 2026-10-16/20 | Walkthrough independiente ejecutado: evaluador .NET/WCF ajeno al autor, caso nuevo (`TRAMITE_SECUENCIAL 3147`, gestión 2026), 2 h 45 min. Resultado: 6/8 tareas sin ayuda y 0/2 puntos críticos a la primera; tres cambios derivados (INDETERMINADO, mapeo lógico↔físico, Reserva-Ejecución-Confirmación), aplicados al método. | Cierre de E7e (6/6 criterios) y de E7f. La evidencia mide comprensibilidad y aplicabilidad, no efectividad; n = 1, evaluador junior de la misma organización. Se corrigió el informe de E7e (V6: 3/3). |
 
 ## Preguntas abiertas
 
+- **E8:** diseñar y ejecutar el ciclo formativo (con rediseño documentado) y el ciclo sumativo.
+- **E8:** ampliar la muestra de practicantes independientes (≥2–3), no solo el evaluador del walkthrough.
+- **E8:** evaluar la idempotencia sobre una compensación real del método, no sobre la anulación del sistema actual.
+- Aplicar Dc10: resolver los 44 duplicados y crear el índice único.
+- Unificar las dos rutas de ordenamiento (K6.EjecutarPlan y el bucle en `CoordinadorMetodo.Compensar`).
+- Definir el único responsable de cerrar una reserva `Registrada` sin confirmar (K5 o K7).
+- Decidir el alcance del segundo exemplar (`Ven06Revertir`).
 - Aclarar si los 226 timeouts son un subconjunto de los 4.302 errores no controlados.
-- Adjuntar las URL de las secciones citadas de Temporal y Axon (E5).
-- Registro de selección del mapeo sistemático (E5).
+- Adjuntar las URL de las secciones citadas de Temporal y Axon (E5) y registrar el protocolo del mapeo (E5).
 
 ## Próximo paso
 
-- E7e: construir V1, V2 y V3 y reportar la evidencia de V1–V8 con el registro de cambios; en paralelo, la sesión de línea base experimental del 2026-10-06.
+- E8: evaluación formativa con rediseño documentado y evaluación sumativa sobre el doble neutro, repitiendo el control negativo en cada corrida y con practicantes independientes.

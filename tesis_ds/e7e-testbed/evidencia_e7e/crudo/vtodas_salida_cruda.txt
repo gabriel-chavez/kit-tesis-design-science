@@ -1,0 +1,11 @@
+===== EJECUCION CRUDA - PRUEBAS V1-V8 Y CONTROL NEGATIVO =====
+Fecha: 2026-10-14 22:14:52
+Comando: dotnet run -- VTODAS ..\evidencia_e7e
+Directorio: e7e-testbed\coordinador
+Codigo de salida: 0
+=============================================================
+
+Evidencia escrita en: ..\evidencia_e7e\v1_resultados.md
+Evidencia escrita en: ..\evidencia_e7e\v2_resultados.md
+Evidencia escrita en: ..\evidencia_e7e\v3_resultados.md
+Evidencia escrita en: ..\evidencia_e7e\control_negativo.md

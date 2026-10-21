@@ -65,6 +65,7 @@ flowchart TD
 | Dc8 | La **acción compensatoria disponible en el contexto** es anular el QR no pagado; no existe reversión de pago (condición de contorno) | Suponer una reversión del pago | BUSA solo expone la anulación del QR antes de ser pagado; para un QR ya pagado la acción correcta es continuar (efectivizar), no compensar | F5 |
 | Dc9 | La **reconciliación** se ejecuta con los **servicios de Windows** existentes | Construir un planificador nuevo | Ya existe la infraestructura de tareas programadas (`WinServiceSoatConsultaAnulaPagosQR`, `WinServiceSoatAnulaQR`); reutilizarla reduce costo y riesgo | F7, C5 |
 | Dc13 | La **compensación se define como agnóstica a la acción**: el método garantiza la idempotencia de cualquier acción compensatoria registrada en la bitácora, y la **anulación del QR no pagado es la exemplar evaluada** | Limitar la compensación a la anulación (A) o definirla como reversión interna (B) | Preserva el nivel de clase (transferibilidad) sin fingir una reversión de pago que BUSA no ofrece; la anulación es la instancia concreta disponible para evaluar | F5 |
+| Dc14 | Decidir con **dos hechos**: la categoría de negocio **y** la existencia del recurso en el externo (K3 consulta `UnidadesQr`) | Decidir solo con la categoría de negocio | Un estado `SOLICITADO` no informa si el efecto ya ocurrió; decidir solo por categoría produce `Reprocesar` y duplica. La insuficiencia se reveló en V1 (escenarios 2 y 3), no a posteriori | F3, F4 |
 
 ## 6. Trazabilidad requisito → componente → decisión
 
