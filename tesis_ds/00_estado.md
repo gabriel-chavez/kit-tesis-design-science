@@ -55,12 +55,14 @@
 | 2026-10-08 | Se resuelve la contradicción de `NumeroIntentos`: el valor de producción es **dinámico**, editado a mano hasta 10 según la transaccionalidad; la prueba usó 5. Se adopta la definición de compensación **agnóstica a la acción (C), con la anulación del QR no pagado como exemplar (A)**. | Cierre de la delimitación del artefacto. La definición agnóstica preserva el nivel de clase sin fingir una reversión de pago que BUSA no ofrece. La variabilidad no registrada del parámetro refuerza el requisito F9 (telemetría). |
 | 2026-10-13/14 | Se construye y verifica el artefacto (E7e): librería `E7e_MetodoCompensacion` (`netstandard2.0`) con K1–K9 sobre puertos; V1–V8 cumplen; el **control negativo** confirma la neutralidad del doble (sin K5: N efectos; con K5: 1); el **cliente WCF real** de BUSA enlaza con el doble (2/2); se documentan 9 cambios y 8 defectos detectados por contradicción de evidencia. | **E7e no cerrada:** falta el *walkthrough* de un practicante independiente (criterio 4), que no puede ejecutar el constructor. Integración parcial: la cadena completa no se ejecutó, el DDL de Dc10 no se aplicó y los adaptadores reales no se escribieron. Todo declarado. |
 | 2026-10-16/20 | Walkthrough independiente ejecutado: evaluador .NET/WCF ajeno al autor, caso nuevo (`TRAMITE_SECUENCIAL 3147`, gestión 2026), 2 h 45 min. Resultado: 6/8 tareas sin ayuda y 0/2 puntos críticos a la primera; tres cambios derivados (INDETERMINADO, mapeo lógico↔físico, Reserva-Ejecución-Confirmación), aplicados al método. | Cierre de E7e (6/6 criterios) y de E7f. La evidencia mide comprensibilidad y aplicabilidad, no efectividad; n = 1, evaluador junior de la misma organización. Se corrigió el informe de E7e (V6: 3/3). |
+| 2026-10-20 | Se recibe una segunda hoja de aplicabilidad (Anahi Quisbert, 1 año, mismo caso 3147/2026): 8/8 tareas y 2/2 puntos críticos a la primera; reporta las mismas tres ambigüedades. | Evidencia de aplicabilidad n = 2, **no** un ciclo formativo ni sumativo. Pendiente declarar la versión del método entregada, la ausencia de contacto entre evaluadores y si hubo ejecución o solo razonamiento. |
+| 2026-10-27 | Se elimina el solucionario simulado (no era evidencia) y se define el protocolo de E8: ciclo formativo con 11 escenarios (6 base + 5 límite) y ciclo sumativo con ≥2–3 practicantes, casos distintos y comparación método vs. conducta actual. | Cierre del diseño de la evaluación. La aplicabilidad queda en n = 2; los ciclos formativo y sumativo siguen pendientes. |
 
 ## Preguntas abiertas
 
-- **E8:** diseñar y ejecutar el ciclo formativo (con rediseño documentado) y el ciclo sumativo.
-- **E8:** ampliar la muestra de practicantes independientes (≥2–3), no solo el evaluador del walkthrough.
-- **E8:** evaluar la idempotencia sobre una compensación real del método, no sobre la anulación del sistema actual.
+- **E8 aplicabilidad:** declarar la versión entregada a Anahi, la ausencia de contacto entre evaluadores, si hubo ejecución o razonamiento, y obtener confirmación de cada evaluador.
+- **E8 formativo:** diseñar y ejecutar el ciclo con rediseño documentado.
+- **E8 sumativo:** definir y ejecutar la muestra (≥2–3 practicantes, idealmente externos).
 - Aplicar Dc10: resolver los 44 duplicados y crear el índice único.
 - Unificar las dos rutas de ordenamiento (K6.EjecutarPlan y el bucle en `CoordinadorMetodo.Compensar`).
 - Definir el único responsable de cerrar una reserva `Registrada` sin confirmar (K5 o K7).
@@ -70,4 +72,4 @@
 
 ## Próximo paso
 
-- E8: evaluación formativa con rediseño documentado y evaluación sumativa sobre el doble neutro, repitiendo el control negativo en cada corrida y con practicantes independientes.
+- E8: ejecutar el ciclo formativo con los once escenarios, documentar el rediseño y congelar la versión; después, el ciclo sumativo con practicantes y casos distintos.
