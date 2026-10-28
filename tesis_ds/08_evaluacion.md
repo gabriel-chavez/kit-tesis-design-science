@@ -1,6 +1,6 @@
 # E8. Evaluación
 
-> **Estado:** en curso. Este documento define los dos ciclos que faltan: **formativo** (mejorar el método con evidencia) y **sumativo** (juzgarlo contra los criterios congelados). Los walkthroughs de aplicabilidad ya registrados **no** sustituyen ninguno de los dos.
+> **Estado:** en curso. Ciclo formativo **cerrado** el 2026-10-27 en tres corridas (dos de rediseño y una de lectura corregida): D1–D4 resueltos o declarados, control negativo confirmado y **versión congelada** (SHA-256 `ec9b8b6…`). Queda el ciclo sumativo.
 
 ## 1. Posición en el marco FEDS
 
@@ -142,10 +142,72 @@ Juzgar la versión final contra los criterios congelados y medir la aplicabilida
 
 **Limitaciones:** mismo caso, misma organización, ambos junior. Se declaran; no se ocultan. Estas dos hojas miden aplicabilidad, no efectividad.
 
-## 7. Pendientes
+## 7. Ciclo formativo: resultados (2026-10-27)
 
-- Ejecutar el ciclo formativo con los once escenarios.
-- Documentar el rediseño y congelar la versión.
-- Definir la muestra y ejecutar el ciclo sumativo con casos distintos.
+**11 escenarios** (6 base + 5 límite) sobre el doble neutro. Evidencia en `e8_evidencia/ciclo_formativo_resultados.md` y `ciclo_formativo_rediseno.md`.
+
+| # | Escenario | Resultado | Defecto |
+|:--|:--|:--|:--|
+| S1 | Caída antes del efecto | 0 recursos | — |
+| S2 | Timeout después del efecto | 1 recurso; `ConfirmarProcesada` | — |
+| S3 | Respuesta perdida | 1 recurso; `ConfirmarProcesada` | — |
+| S4 | Duplicada concurrente (5) | **5 recursos en la 1.ª iteración → 1 tras el rediseño** | **D1 (resuelto)** |
+| S5 | Reintento tras éxito | 1 recurso | — |
+| S6 | Fallo en la compensación | 1 compensación | — |
+| S7 | Muerte entre reserva y ejecución | 0 reservas pendientes tras K7 | **D2 (sin cablear)** |
+| S8 | `PENDIENTE` 19/20 min | Reconsultar / Reconciliar | **D3 (granularidad)** |
+| S9 | Estado desconocido | Reconciliar | — |
+| S10 | Falla escritura en bitácora | `InvalidOperationException` | **D4 (sin manejo)** |
+| S11 | Compensación falla dos veces | 1 compensación | — |
+| CN | Control negativo | 3 / 1 | — |
+
+### D1 — Concurrencia (resuelto, con una condición)
+
+La primera iteración produjo **5 recursos** con 5 invocaciones concurrentes. Se añadió un lock por operación (`ConcurrentDictionary` estático) y S4 pasó a 1 recurso.
+
+**Condición crítica:** ese lock es **de proceso**. Garantiza la idempotencia dentro de una instancia, pero **no entre instancias o servidores**. En un despliegue real con varias réplicas, la garantía debe venir de la **base de datos** (índice único + inserción atómica, Dc10) o de un lock distribuido. Debe declararse como límite y probarse con dos procesos, o el método no puede afirmar idempotencia distribuida.
+
+### D2, D3 y D4 (declarados, no resueltos)
+
+- **D2:** `K2.MarcarAbandonada` no se invoca desde K5 ni K7. Asignar a **K7 como responsable único** y cablearlo. Afecta la garantía ante muerte entre reserva y ejecución.
+- **D3:** la ventana se evalúa en minutos enteros; no distingue 19:59 de 20:01. O se corrige a segundos, o se declara la ventana en minutos enteros en el método.
+- **D4:** `MarcarAplicada` es `void`; un fallo de persistencia propaga excepción y deja la reserva colgada. Convertir a resultado, reintentar y dejar la reserva `Registrada` para K7.
+
+### Criterio de salida
+
+- D1 resuelto y verificado.
+- **D2 y D4 deben resolverse antes de congelar**: afectan la garantía del método. D3 puede declararse como condición de contorno si se documenta.
+- Re-ejecutar S7, S8 y S10, más la regresión de S1–S6, S9 y S11.
+- Congelar la versión con su hash.
+- Control negativo confirmado.
+
+## 8. Segunda iteración y congelación (2026-10-27)
+
+- **D2 resuelto y verificado:** K7 es el responsable único; marca `Abandonada` y la resuelve en la siguiente pasada (S7: dos pasadas, 1 compensación, 0 pendientes).
+- **D4 resuelto y verificado:** `MarcarAplicada` devuelve `bool`; K5 reintenta y deja la reserva a K7 sin propagar excepción (S10: sin excepción, reserva final `Aplicada`, 0 pendientes).
+- **D3 declarado:** ventana de **20 minutos completos**; no se afirma precisión de segundos.
+- **D1:** resuelto para una instancia; la garantía distribuida depende de **Dc10** (índice único + inserción atómica), que pasa a ser **condición necesaria**.
+- **Resultado:** 11 escenarios sin defectos abiertos; control negativo 3 / 1.
+- **Versión congelada:** `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf` (43.520 bytes).
+
+### Inconsistencia de reporte (resuelta el 2026-10-27)
+
+`K7.InformeCorrida.ReservasResueltas` cuenta solo las reservas cerradas **por ejecución**. Las cerradas **por confirmación** (el externo ya estaba `ANULADO`) se contabilizan aparte. La evidencia ahora reporta `resueltasPorEjecucion`, `cerradasPorConfirmacion` y `Reservas resueltas (observado por transición de estado)`, que vale 1 en S7 y S10. El campo del artefacto no cambió para preservar el hash; la corrección es de lectura y así debe explicarse en la tesis.
+
+### Alcance de "0 defectos abiertos"
+
+Se refiere a los escenarios probados en una instancia. **Dc10 sigue abierto**: sin índice único y sin resolver los 44 duplicados, la idempotencia distribuida no está garantizada. No se puede afirmar más que lo probado.
+
+### Paquete consolidado
+
+Los entregables están en `e8_evidencia/entregables_E8_formativo/`: LEEME, versión congelada, rediseño, resultados, control negativo y regresión. La cronología (iteración 1: detección; 2: rediseño; 3: corrección de lectura) y las rutas quedaron corregidas.
+
+**Dos ajustes menores:** calificar "0 defectos abiertos" como "en los 11 escenarios, una instancia" en `version_congelada.md`; y unificar las rutas de reproducción (`..\evidencia_e7e` frente a `tesis_ds/e8_evidencia`), para que un tercero no falle al reproducir.
+
+## 9. Pendientes
+
+- Ajustar el calificador de "0 defectos abiertos" y las rutas de reproducción del paquete.
+- Aplicar Dc10 (resolver los 44 duplicados y crear el índice único) o declararlo como condición abierta del alcance.
+- Ejecutar el ciclo sumativo con 2–3 practicantes, casos distintos y comparación contra la línea base.
 - Repetir el control negativo en cada corrida.
 - Analizar y declarar las amenazas a la validez.

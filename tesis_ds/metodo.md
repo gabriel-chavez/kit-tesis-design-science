@@ -104,6 +104,8 @@ flowchart LR
 
 > `PENDIENTE` es una categoría **sintética del método**, no un código que devuelva BUSA (que responde `H`, `P`, `A`, `V`). Se renombra a `INDETERMINADO` para evitar que quien implemente busque ese literal en la respuesta del servicio.
 
+> La ventana se mide en **minutos completos**: no distingue 19:59 de 20:01. Es una condición de contorno declarada en el ciclo formativo.
+
 **Límite de la normalización (Dc14).** La categoría de negocio es necesaria pero **no suficiente**: un estado `SOLICITADO` no dice si el efecto ya ocurrió. Por eso K3 consulta además la cantidad de recursos del externo y K4 decide con **dos hechos**: la categoría y la existencia del recurso.
 
 ### 3.5 Coordinación multi-salto (decisión adoptada)
@@ -229,6 +231,7 @@ Se conservan las decisiones Dc1–Dc13 y los refinamientos Dc10–Dc12 documenta
 ## 9. Limitaciones conocidas
 
 - **La evidencia verifica el método, no su despliegue.** La integración con la cadena real está pendiente: la cadena completa no se ejecutó, el DDL de Dc10 no se aplicó y los adaptadores reales (WCF para el externo, `T_QR_SOLICITUD` para la bitácora) no se escribieron.
+- **La concurrencia se verificó en una instancia.** El lock es de proceso; la garantía distribuida depende de Dc10 (índice único e inserción atómica) y no está demostrada.
 - No contempla la reversión de un pago ya ejecutado (BUSA no la ofrece).
 - No cubre la conciliación financiera con el banco.
 - Su garantía de idempotencia depende de que el servicio externo permita verificar el estado y de la unicidad en la base.

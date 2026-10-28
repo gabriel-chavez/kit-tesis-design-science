@@ -57,12 +57,17 @@
 | 2026-10-16/20 | Walkthrough independiente ejecutado: evaluador .NET/WCF ajeno al autor, caso nuevo (`TRAMITE_SECUENCIAL 3147`, gestión 2026), 2 h 45 min. Resultado: 6/8 tareas sin ayuda y 0/2 puntos críticos a la primera; tres cambios derivados (INDETERMINADO, mapeo lógico↔físico, Reserva-Ejecución-Confirmación), aplicados al método. | Cierre de E7e (6/6 criterios) y de E7f. La evidencia mide comprensibilidad y aplicabilidad, no efectividad; n = 1, evaluador junior de la misma organización. Se corrigió el informe de E7e (V6: 3/3). |
 | 2026-10-20 | Se recibe una segunda hoja de aplicabilidad (Anahi Quisbert, 1 año, mismo caso 3147/2026): 8/8 tareas y 2/2 puntos críticos a la primera; reporta las mismas tres ambigüedades. | Evidencia de aplicabilidad n = 2, **no** un ciclo formativo ni sumativo. Pendiente declarar la versión del método entregada, la ausencia de contacto entre evaluadores y si hubo ejecución o solo razonamiento. |
 | 2026-10-27 | Se elimina el solucionario simulado (no era evidencia) y se define el protocolo de E8: ciclo formativo con 11 escenarios (6 base + 5 límite) y ciclo sumativo con ≥2–3 practicantes, casos distintos y comparación método vs. conducta actual. | Cierre del diseño de la evaluación. La aplicabilidad queda en n = 2; los ciclos formativo y sumativo siguen pendientes. |
+| 2026-10-27 | Se ejecuta el ciclo formativo (11 escenarios): **D1** concurrencia detectado (5 invocaciones → 5 recursos) y resuelto con lock por operación (→ 1 recurso); **D2** (`MarcarAbandonada` sin cablear), **D3** (ventana en minutos enteros) y **D4** (fallo de persistencia sin manejo) declarados; control negativo confirmado (3 / 1). | Ciclo formativo ejecutado, **no cerrado**: D2 y D4 afectan la garantía y deben resolverse antes de congelar; D3 se corrige o se declara. El lock de D1 es **de proceso**, no distribuido: la garantía entre instancias depende de Dc10 (índice único + inserción atómica). |
+| 2026-10-27 | Se corrige la lectura del contador de reservas (`resueltasPorEjecucion` vs `cerradasPorConfirmacion`; transición de estado = 1 en S7/S10) sin cambiar el artefacto, para preservar el hash. Se congela la versión `ec9b8b6…` y se declara el alcance exacto: idempotencia en una instancia; la distribuida depende de Dc10. | Cierre del ciclo formativo. Queda el ciclo sumativo. |
+| 2026-10-27 | Se consolida el paquete del ciclo formativo (`e8_evidencia/entregables_E8_formativo/`): cronología 1/2/3, contadores reconciliados, rutas corregidas y versión congelada `ec9b8b6…`. | Cierre formal del ciclo formativo. Ajustes menores: calificar "0 defectos abiertos" y unificar rutas de reproducción. Queda el ciclo sumativo. |
+| 2026-10-27 | Se verifica el RAR del testbed (hash `ec9b8b6…` coincide) y se reemplaza `tesis_ds/e7e-testbed` por su contenido, sin `obj/` ni `bin/`; el DLL congelado queda en `artefacto_congelado/`. Respaldo del testbed previo en `e8_evidencia/_backup/`. | El testbed del proyecto corresponde a la versión congelada. `Coordinador.csproj` conserva la referencia al proyecto original; para compilar en otro entorno hay que ajustarla o usar el DLL. |
 
 ## Preguntas abiertas
 
 - **E8 aplicabilidad:** declarar la versión entregada a Anahi, la ausencia de contacto entre evaluadores, si hubo ejecución o razonamiento, y obtener confirmación de cada evaluador.
-- **E8 formativo:** diseñar y ejecutar el ciclo con rediseño documentado.
-- **E8 sumativo:** definir y ejecutar la muestra (≥2–3 practicantes, idealmente externos).
+- **Dc10:** aplicar el índice único (resolver los 44 duplicados) o declararlo como condición abierta de despliegue.
+- **D1 concurrencia:** la garantía es de una instancia; la distribuida depende de Dc10 (declarado).
+- **E8 sumativo:** definir y ejecutar la muestra (≥2–3 practicantes, casos distintos, idealmente uno externo).
 - Aplicar Dc10: resolver los 44 duplicados y crear el índice único.
 - Unificar las dos rutas de ordenamiento (K6.EjecutarPlan y el bucle en `CoordinadorMetodo.Compensar`).
 - Definir el único responsable de cerrar una reserva `Registrada` sin confirmar (K5 o K7).
@@ -72,4 +77,4 @@
 
 ## Próximo paso
 
-- E8: ejecutar el ciclo formativo con los once escenarios, documentar el rediseño y congelar la versión; después, el ciclo sumativo con practicantes y casos distintos.
+- E8: aplicar D2 y D4, decidir D3, re-ejecutar y congelar la versión; después, el ciclo sumativo con practicantes y casos distintos.
