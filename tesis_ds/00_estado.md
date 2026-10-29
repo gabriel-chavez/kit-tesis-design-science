@@ -27,7 +27,7 @@
 | E7e. Construcción y verificación interna | cerrada | `07e_construccion_verificacion.md` | 2026-10-20 |
 | E7f. Ficha del artefacto | cerrada | `07f_ficha_artefacto.md` | 2026-10-20 |
 | E8. Evaluación | cerrada en lo técnico; aplicabilidad exploratoria | `08_evaluacion.md` | 2026-10-28 |
-| E9. Enlace propuesta ↔ solución | pendiente | `09_enlace_solucion.md` | |
+| E9. Enlace propuesta ↔ solución | cerrada con brechas declaradas | `09_enlace_solucion.md` | 2026-10-28 |
 | E10. Contribución y conclusiones | pendiente | `10_contribucion_conclusiones.md` | |
 
 ## Decisiones tomadas
@@ -64,6 +64,7 @@
 | 2026-10-28 | Se ejecuta el ciclo sumativo sobre la versión congelada `ec9b8b6…` (doble neutro, dos casos, seis escenarios): método 12/12 frente a 0/12 de la línea base; 0 recursos y 0 compensaciones duplicadas; 0 estados inconsistentes; 14 llamadas frente a 38; control negativo por caso 3 / 1. | Cierre de la dimensión **técnica** de E8. El control negativo no se ejecutó dentro de las sesiones humanas; la invariancia del estado final no se re-midió en el sumativo y se remite al formativo (S11). |
 | 2026-10-28 | Se ejecutan las sesiones humanas con P1 (Leonel Chamaca Lima, CASO-A) y P2 (Ernesto Gutierrez, CASO-B): 6/6 tareas cada uno, 2/2 puntos críticos E2/E6, 50 y 55 minutos, cuestionario 3,31/5. Las hojas quedan **sin firmar** y el registro de ayuda como **no evaluable**. | Los datos se clasifican como piloto reportado, no verificado: no hay consentimientos, notas crudas ni declaración de independencia, y no se explicó la coincidencia con un documento previo. No se usan para afirmar aplicabilidad. |
 | 2026-10-28 | Se declara que el criterio de aplicabilidad **no se alcanzó** y que la aplicabilidad es **exploratoria** (n = 2, piloto). No se modifica el criterio congelado en E6. | Evita HARKing: el criterio se registra como no alcanzado, no se reescribe. El paquete del sumativo se incorpora a `e8_evidencia/sumativo/` (14 archivos) y se corrigen sus inconsistencias internas: fechas, cita de la hoja, regla de conteo de ambigüedades, control negativo en ambas hojas, referencias 09–13 y puntos críticos definidos después del protocolo. |
+| 2026-10-28 | Se cierra E9 con la matriz de trazabilidad problema → requisito → decisión → componente → indicador → evidencia → grado → limitación. Se retiran cuatro afirmaciones sin respaldo (idempotencia distribuida, funcionamiento en la cadena real, reducción del tiempo de resolución y reducción de costo) y se degrada una (aplicabilidad). | La matriz identifica 6 eslabones sin evidencia suficiente —C5, F6, C6, Dc10, Dc11 y `K6.EjecutarPlan`—, todos declarados. La etapa se cierra porque no hay eslabones huérfanos **por omisión** y porque cada afirmación queda respaldada o retirada. |
 
 ## Preguntas abiertas
 
@@ -73,6 +74,8 @@
 - **E8 evidencia humana:** aportar consentimientos, declaración de independencia de la observadora y notas crudas, o declarar su ausencia definitiva.
 - **E8 integridad:** explicar la coincidencia de las respuestas con el documento previo.
 - **E8 reproducción:** incorporar un modo `SUMATIVO` al arnés, o declarar la corrida como no replicable con el material actual.
+- **Coherencia 07f:** actualizar la ficha del artefacto (sigue en "borrador", cita el hash `d0008733…` y declara pendiente el walkthrough cerrado el 2026-10-20).
+- **Coherencia 07e:** precisar que lo probado con WCF es el **cliente** real contra el doble (2/2), no el servicio real.
 - Unificar las dos rutas de ordenamiento (K6.EjecutarPlan y el bucle en `CoordinadorMetodo.Compensar`).
 - Definir el único responsable de cerrar una reserva `Registrada` sin confirmar (K5 o K7).
 - Decidir el alcance del segundo exemplar (`Ven06Revertir`).
@@ -81,4 +84,4 @@
 
 ## Próximo paso
 
-- E8 (cierre humano): firmar las hojas de P1 y P2, anexar los escaneos y sostener el criterio de aplicabilidad como exploratorio. Con eso, iniciar E9 (enlace propuesta ↔ solución).
+- E9 (cierre de la tesis): formular la contribución como principios de diseño en E10, usando solo las afirmaciones respaldadas de `09_enlace_solucion.md` §8.
