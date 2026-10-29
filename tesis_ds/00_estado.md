@@ -61,13 +61,17 @@
 | 2026-10-27 | Se corrige la lectura del contador de reservas (`resueltasPorEjecucion` vs `cerradasPorConfirmacion`; transición de estado = 1 en S7/S10) sin cambiar el artefacto, para preservar el hash. Se congela la versión `ec9b8b6…` y se declara el alcance exacto: idempotencia en una instancia; la distribuida depende de Dc10. | Cierre del ciclo formativo. Queda el ciclo sumativo. |
 | 2026-10-27 | Se consolida el paquete del ciclo formativo (`e8_evidencia/entregables_E8_formativo/`): cronología 1/2/3, contadores reconciliados, rutas corregidas y versión congelada `ec9b8b6…`. | Cierre formal del ciclo formativo. Ajustes menores: calificar "0 defectos abiertos" y unificar rutas de reproducción. Queda el ciclo sumativo. |
 | 2026-10-27 | Se verifica el RAR del testbed (hash `ec9b8b6…` coincide) y se reemplaza `tesis_ds/e7e-testbed` por su contenido, sin `obj/` ni `bin/`; el DLL congelado queda en `artefacto_congelado/`. Respaldo del testbed previo en `e8_evidencia/_backup/`. | El testbed del proyecto corresponde a la versión congelada. `Coordinador.csproj` conserva la referencia al proyecto original; para compilar en otro entorno hay que ajustarla o usar el DLL. |
+| 2026-10-28 | Se ejecuta la medición técnica del ciclo sumativo: método 12/12 vs. línea base 0/12; 0 vs. 10 recursos duplicados; 0 vs. 6 compensaciones duplicadas; control negativo 3/1. Se corrige la identidad a `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)` (`GESTION` es canal, no año) y se propaga a 07b/07c/07d/metodo. | La medición técnica es sólida, pero las sesiones humanas P1/P2 y el observador están pendientes: **E8 no se cierra**. La unicidad de la llave es condición de Dc10, no una propiedad actual. |
+| 2026-10-28 | Se consolida el paquete del ciclo sumativo en `e8_evidencia/entregables_E8_sumativo/` y se documenta el detalle en `DETALLE_ENTREGABLES_E8.md`: informe, resultados, matriz, amenazas, mapeo de identidad, asignación de participantes y evidencia cruda (control, hash, métricas). | El paquete técnico está completo y verificado; las sesiones humanas P1/P2 y el observador siguen pendientes. E8 no se cierra. |
+| 2026-10-28 | Se recibe el reporte corregido de dos sesiones formales (P1 Leonel/`CASO-A`; P2 Ernesto Gutierrez/`CASO-B`; observadora Micaela Machicado; 27/10/2026). Se corrigieron los nombres y se excluyó `CASO-C`. | **No verificado como evidencia**: firmas escaneadas pendientes, consentimientos y notas crudas ausentes; falta el conteo de ayuda, los puntos críticos, la versión congelada, el orden y el control negativo. E8 sigue abierto. |
 
 ## Preguntas abiertas
 
 - **E8 aplicabilidad:** declarar la versión entregada a Anahi, la ausencia de contacto entre evaluadores, si hubo ejecución o razonamiento, y obtener confirmación de cada evaluador.
 - **Dc10:** aplicar el índice único (resolver los 44 duplicados) o declararlo como condición abierta de despliegue.
 - **D1 concurrencia:** la garantía es de una instancia; la distribuida depende de Dc10 (declarado).
-- **E8 sumativo:** definir y ejecutar la muestra (≥2–3 practicantes, casos distintos, idealmente uno externo).
+- **E8 sumativo:** ejecutar P1 (`CASO-A`) y P2 (`CASO-B`) con observador independiente; llenar hoja de observación, cuestionario y entrevista; analizar y declarar amenazas.
+- Verificar páginas de Helland (2012) y Hummer et al. (2013) antes de citarlas.
 - Aplicar Dc10: resolver los 44 duplicados y crear el índice único.
 - Unificar las dos rutas de ordenamiento (K6.EjecutarPlan y el bucle en `CoordinadorMetodo.Compensar`).
 - Definir el único responsable de cerrar una reserva `Registrada` sin confirmar (K5 o K7).

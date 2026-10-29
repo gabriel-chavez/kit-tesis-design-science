@@ -47,7 +47,7 @@ Derivar del problema (E2) y del diagnóstico (E6) los requisitos que el método 
 ## 6. Datos confirmados (puerta de E7b, cerrada el 2026-10-04)
 
 - **Estados de BUSA:** PAGADO / EJECUTADO = procesada; SOLICITADO / ANULADO / VENCIDO = no procesada; PENDIENTE = indeterminado, fiable hasta **20 minutos**.
-- **Identificador del cliente:** `TRAMITE_NUMERO` + `GESTION` (por ejemplo, `6901XUL` + `2025`), único por año. Es la base de la llave de idempotencia.
+- **Identificador del cliente:** `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)` en `PAGO_SIMPLE.T_QR_SOLICITUD`. La segunda columna es el **canal/tipo de trámite**, no el año. Es la base de la llave de idempotencia; su unicidad en la base es una **condición de despliegue (Dc10)**, no una propiedad actual (existen duplicados históricos).
 - **Almacén:** existe `BD_PASARELA_PAGO.PAGO_SIMPLE.T_QR_SOLICITUD_EJECUCION_INTENTOS`, pero registra la efectivización posterior a la confirmación del pago, proceso **externo a la pasarela**; se puede crear una tabla nueva para la bitácora del método.
 - **Prioridades:** confirmadas (F1–F9, C1–C4 y C6 como "Debe"; C5 como "Debería").
 - **Trade-offs:** confirmados.

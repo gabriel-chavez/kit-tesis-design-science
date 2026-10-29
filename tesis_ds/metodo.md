@@ -37,8 +37,7 @@ flowchart LR
 - **Objetivo del método:** garantizar (a) la **idempotencia de la operación** y de la **compensación** en toda la cadena, y (b) la **resolución de los estados indeterminados**, de modo que ninguna operación quede con estado desconocido al cierre y ninguna compensación produzca efecto duplicado.
 - **Principio rector:** el estado del servicio externo es la **fuente de verdad**, no la memoria del proceso. La bitácora propia acelera y ordena, pero ante cualquier ambigüedad se resuelve consultando al servicio externo.
 - **Contexto de aplicación (precondiciones):**
-  1. la operación tiene un **identificador estable y reproducible** (en este contexto, `TRAMITE_NUMERO` + `GESTION`), compartido por todos los saltos;
-     - **Correspondencia física:** `TRAMITE_NUMERO` → `TRAMITE_SECUENCIAL`; `GESTION` → `T_PAR_SIMPLE_TRAMITE_FK`, en `PAGO_SIMPLE.T_QR_SOLICITUD`;
+  1. la operación tiene un **identificador estable y reproducible**: `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)` en `PAGO_SIMPLE.T_QR_SOLICITUD`, compartido por todos los saltos. La segunda columna es el **canal/tipo de trámite**, no el año; su unicidad es una condición de despliegue (Dc10);
   2. el servicio externo **expone una operación de consulta de estado**;
   3. se dispone de un **almacén de bitácora** con una tabla de idempotencia de compensaciones identificada por `(operación, motivo)`;
   4. existe **unicidad en la base** sobre la llave lógica (índice único), como condición de la idempotencia (Dc10);
@@ -65,7 +64,7 @@ flowchart LR
 
 | Entrada | Fuente | Salida / producto de trabajo | Destino |
 |:--|:--|:--|:--|
-| Solicitud de operación | Usuario o proceso de negocio | Identidad de la operación `(TRAMITE_NUMERO, GESTION)` | Bitácora (K2) |
+| Solicitud de operación | Usuario o proceso de negocio | Identidad de la operación `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)` | Bitácora (K2) |
 | Estado real de la operación | Consulta al servicio externo (K3) | Estado normalizado: procesado / no procesado / indeterminado | Motor de decisión (K4) |
 | Regla de decisión | Método (sección 3.3) | Decisión: reprocesar / compensar / reconciliar | Ejecución o cola |
 | Registro de compensación | Compensador (K5) | Par `(operación, motivo)` persistido | Tabla de idempotencia |
@@ -76,7 +75,7 @@ flowchart LR
 
 | N.º | Actividad | Rol responsable | Entradas | Producto | Criterio de salida |
 |:--|:--|:--|:--|:--|:--|
-| 1 | Asignar la identidad determinista de la operación (única para toda la cadena) | Coordinador | `TRAMITE_NUMERO`, `GESTION` | Llave de idempotencia (K1) | La misma operación produce siempre la misma llave, en cualquier salto |
+| 1 | Asignar la identidad determinista de la operación (única para toda la cadena) | Coordinador | `TRAMITE_SECUENCIAL`, `T_PAR_SIMPLE_TRAMITE_FK` | Llave de idempotencia (K1) | La misma operación produce siempre la misma llave, en cualquier salto |
 | 2 | Registrar el estado inicial en la bitácora | Coordinador | Llave | Fila de operación con estado inicial (K2) | Registro previo a la llamada externa |
 | 3 | Ejecutar la operación a través de la cadena (integración → servicio de pago → servicio externo) | Servicio de pago (coordinado) | Llave, datos de la operación | Respuesta o excepción por salto | Se conoce el desenlace de cada salto |
 | 4 | Si hay respuesta de éxito: registrar "procesada" | Coordinador | Respuesta | Estado final de la operación | Estado confirmado por el servicio |
@@ -155,7 +154,7 @@ Se conservan las decisiones Dc1–Dc13 y los refinamientos Dc10–Dc12 documenta
 
 | Decisión | Contenido | Consecuencia operativa |
 |:--|:--|:--|
-| Dc1 | Llave derivada de `(TRAMITE_NUMERO, GESTION)` | No requiere persistir un identificador nuevo; debe compartirse entre saltos |
+| Dc1 | Llave derivada de `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)` | No requiere persistir un identificador nuevo; debe compartirse entre saltos. `GESTION` no es el año: es el canal; la unicidad depende de Dc10 |
 | Dc2 | Verificar el estado ante sospecha, no siempre | Menor latencia en el camino exitoso |
 | Dc3 | INDETERMINADO (`PENDIENTE_RESOLUCION`) = no asumir; reconsultar y luego reconciliar | Prohíbe asumir el estado |
 | Dc5 | Compensación por `(operación, motivo)` con registro previo | Hace reconocible la repetición |

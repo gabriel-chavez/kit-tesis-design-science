@@ -14,7 +14,7 @@ Como el servicio externo no participa de una transacción global, **el estado de
 
 | # | Componente | Qué hace | Requisito |
 |:--|:--|:--|:--|
-| K1 | **Generador de identidad** | Deriva la llave de idempotencia `(TRAMITE_NUMERO, GESTION)` | F1 |
+| K1 | **Generador de identidad** | Deriva la llave de idempotencia `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)` | F1 |
 | K2 | **Bitácora de estado** | Registra el estado de cada operación y de cada compensación | F2, F5 |
 | K3 | **Verificador de estado** | Consulta BUSA y mapea a procesado / no procesado / indeterminado | F3 |
 | K4 | **Motor de decisión** | Decide entre reprocesar, compensar o reconciliar | F4 |
@@ -28,7 +28,7 @@ Como el servicio externo no participa de una transacción global, **el estado de
 
 ```mermaid
 flowchart TD
-    A[Operación] --> B[K1: llave = TRAMITE_NUMERO + GESTION]
+    A[Operación] --> B[K1: llave = TRAMITE_SECUENCIAL + T_PAR_SIMPLE_TRAMITE_FK]
     B --> C[K2: registrar estado en bitácora]
     C --> D[Ejecutar en BUSA]
     D --> E{¿Hay respuesta?}
@@ -55,7 +55,7 @@ flowchart TD
 
 | # | Decisión | Alternativa considerada | Justificación | Requisito |
 |:--|:--|:--|:--|:--|
-| Dc1 | Llave de idempotencia **derivada** de `(TRAMITE_NUMERO, GESTION)` | Asignar un UUID antes de llamar | El identificador ya es único por año y sobrevive a los reintentos del cliente; el UUID exigiría persistirlo antes de la llamada y podría perderse | F1 |
+| Dc1 | Llave de idempotencia **derivada** de `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)` | Asignar un UUID antes de llamar | El par físico identifica la operación y sobrevive a los reintentos del cliente; el UUID exigiría persistirlo antes de la llamada y podría perderse. La notación previa `(TRAMITE_NUMERO, GESTION)` era incorrecta: `GESTION` no es el año, sino el canal (`T_PAR_SIMPLE_TRAMITE_FK`). Corrección derivada de la inspección de la base (2026-10-28); su unicidad es condición de Dc10, no una propiedad actual | F1 |
 | Dc2 | Verificar el estado **ante sospecha** (timeout o respuesta perdida), no siempre | Consultar en toda operación | Reduce latencia en el camino exitoso; el riesgo solo existe cuando falta la respuesta | F3, C5 |
 | Dc3 | Tratar PENDIENTE como **indeterminado**, reconsultar hasta 20 minutos y luego reconciliar | Asumir procesado o no procesado | Asumir introduce exactamente el error que la tesis combate: duplicar o dejar sin entregar | F3, F4, F7 |
 | Dc4 | Reutilizar `T_QR_SOLICITUD` (estado) y `T_QR_SOLICITUD_EJECUCION_INTENTOS` (intentos) y crear solo una **tabla de idempotencia de compensaciones** | Reutilizar tal cual las existentes / crear toda la bitácora desde cero | Las existentes cubren estado e intentos, pero no la identidad `(operación, motivo)` de la compensación; crear solo lo que falta evita duplicar datos. La tabla se puede crear en desarrollo de inmediato | F2, F5 |
@@ -123,6 +123,6 @@ Resueltos el 2026-10-04:
 - BUSA **sí** expone operación de anulación, **solo del QR no pagado**; no hay reversión de pago (nota: `WinServiceSoatEfectivizacion` anula QR no pagados).
 - La bitácora se apoya en `T_QR_SOLICITUD` y `T_QR_SOLICITUD_EJECUCION_INTENTOS`; la tabla de idempotencia de compensaciones se puede crear en desarrollo de inmediato.
 - La reconciliación se dispara con **servicios de Windows**.
-- El cliente **sí** puede formar `(TRAMITE_NUMERO, GESTION)`: `TRAMITE_SECUENCIAL` y `T_PAR_SIMPLE_TRAMITE_FK` están en `T_QR_SOLICITUD`, y la combinación es única por año.
+- El cliente **sí** puede formar `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)`: ambas columnas están en `T_QR_SOLICITUD`. La combinación **no es única en los datos actuales** (hay duplicados históricos); la unicidad se impone con Dc10.
 
 **Condición de contorno a declarar:** el método cubre compensaciones de operaciones **no pagadas**; no cubre reversión de pagos ya ejecutados, porque BUSA no la ofrece.

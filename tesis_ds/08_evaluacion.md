@@ -208,6 +208,24 @@ Los entregables están en `e8_evidencia/entregables_E8_formativo/`: LEEME, versi
 
 - Ajustar el calificador de "0 defectos abiertos" y las rutas de reproducción del paquete.
 - Aplicar Dc10 (resolver los 44 duplicados y crear el índice único) o declararlo como condición abierta del alcance.
-- Ejecutar el ciclo sumativo con 2–3 practicantes, casos distintos y comparación contra la línea base.
+- Ejecutar las sesiones humanas del ciclo sumativo (P1 y P2) con observador independiente.
 - Repetir el control negativo en cada corrida.
 - Analizar y declarar las amenazas a la validez.
+
+## 10. Ciclo sumativo: estado (2026-10-28)
+
+**Medición técnica ejecutada** con la misma versión congelada `ec9b8b6…` y el doble neutro:
+
+- Método **12/12** vs. línea base **0/12**.
+- **0** recursos duplicados vs. **10**; **0** compensaciones duplicadas vs. **6**.
+- Control negativo: **3 / 1** en ambos casos.
+- Consultas K3: 6 (método) vs. 0 (línea base); llamadas externas: 14 vs. 38.
+- La línea base se modeló con **150 ms** de espera (no 1 s) para no penalizar; la latencia no es una comparación de SLA.
+
+**Sesiones humanas: reporte corregido recibido, no verificado (2026-10-27).** Dos sesiones formales (P1 Leonel, `CASO-A`; P2 Ernesto Gutierrez, `CASO-B`) con observadora Micaela Machicado, fechas, tiempos, respuestas, cuestionario y entrevista. **No se acepta aún como evidencia**: las firmas escaneadas están pendientes, faltan consentimientos y notas crudas, y no se reportan el conteo de tareas sin ayuda, los puntos críticos, la versión congelada, el orden ni el control negativo. **E8 no está cerrado.**
+
+**Corrección de identidad (Opción A, 2026-10-28).** La llave es `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)`; `GESTION` no es el año, es el canal. Se propagó a `07b`, `07c`, `07d` y `metodo.md`. La unicidad de la llave es condición de Dc10, no una propiedad actual: hay duplicados históricos (`CASO-A` tiene 2 filas).
+
+**Decisión:** no cerrar E8 hasta ejecutar las sesiones humanas y completar la aplicabilidad. La medición técnica no sustituye al observador ni a los practicantes.
+
+**Paquete consolidado:** `e8_evidencia/entregables_E8_sumativo/`, con el detalle en `e8_evidencia/DETALLE_ENTREGABLES_E8.md`. Incluye informe, resultados, matriz, amenazas, mapeo de identidad, asignación de participantes y evidencia cruda (`control_negativo_sumativo.md`, `hash_verificacion.txt`, `metodo_crudo.md`, `linea_base_crudo.md`, `metricas.csv`).

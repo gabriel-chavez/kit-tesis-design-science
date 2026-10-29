@@ -8,7 +8,7 @@ El MVP **no es un sistema completo**: es el mínimo artefacto que permite probar
 
 1. **Formalización del método:** etapas, entradas y salidas, reglas de decisión (reprocesar / compensar / reconciliar), precondiciones y criterios de entrada/salida.
 2. **Una exemplar aplicada** en el entorno controlado que cubra los seis escenarios e implemente los componentes K1–K9:
-   - K1 identidad `(TRAMITE_NUMERO, GESTION)`;
+   - K1 identidad `(TRAMITE_SECUENCIAL, T_PAR_SIMPLE_TRAMITE_FK)`;
    - K2 bitácora (reutilizando `T_QR_SOLICITUD` y `T_QR_SOLICITUD_EJECUCION_INTENTOS` más la tabla de idempotencia de compensaciones);
    - K3 verificador de estado de BUSA;
    - K4 motor de decisión;
