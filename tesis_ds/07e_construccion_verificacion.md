@@ -85,7 +85,7 @@ números**.
 | El método funciona dentro de la cadena real | Los dos saltos son adaptadores |
 | `CNPagosQR` y `CPagoSimple` propagan la llave de K1 | No se ejecutaron |
 | `T_QR_SOLICITUD` tiene la forma que K2 asume | K2 corrió sobre una implementación en memoria |
-| El comportamiento con WCF y `basicHttpBinding` | No se probó; el doble es HTTP simple |
+| El comportamiento del **servicio** WCF real de BUSA | El cliente real enlaza con el doble (2/2, `evidencia_e7e/prueba_enlace_cliente_real.md`), pero el servicio real nunca se invocó: el doble responde SOAP sobre HTTP interno, sin TLS |
 | El índice único de Dc10 | El DDL no se ejecutó |
 
 **En una frase:** la evidencia verifica **el método**, no **su integración**. La integración

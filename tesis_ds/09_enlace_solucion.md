@@ -163,7 +163,8 @@ Derivados de `02_delimitacion.md` §1.2 y de `06_diagnostico.md` §5–§7:
 3. Las condiciones de contorno de §9 son parte del principio, no notas al pie.
 4. Dc10 no es una limitación menor: es la frontera entre "idempotencia verificada" e "idempotencia garantizada en despliegue".
 
-## 12. Deudas de coherencia detectadas
+## 12. Correcciones de coherencia aplicadas (2026-10-28)
 
-- `07f_ficha_artefacto.md` sigue en estado "borrador", cita el hash `d0008733…` (anterior a la congelación) y declara el walkthrough como pendiente, cuando se cerró el 2026-10-20. Debe corregirse antes de citar la ficha en la tesis.
-- `07e_construccion_verificacion.md` §1.2 afirma que el comportamiento con WCF "no se probó", mientras `evidencia_e7e/prueba_enlace_cliente_real.md` registra el enlace del cliente real (2/2). Conviene precisar: lo probado es el **cliente** contra el doble, no el servicio real.
+- `07f_ficha_artefacto.md`: pasa de "borrador" a cerrada; hash corregido a `ec9b8b6e…` (43.520 bytes); walkthrough declarado como cumplido; Dc14 añadido; se incorpora el resultado de E8.
+- `07e_construccion_verificacion.md` §1.2: se precisa que lo probado es el **cliente** WCF real contra el doble (2/2), no el servicio real.
+- `metodo.md`: estado, hash y walkthrough actualizados; se elimina la afirmación de que el walkthrough "no se ejecutó".

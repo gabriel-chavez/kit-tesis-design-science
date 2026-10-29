@@ -74,8 +74,6 @@
 - **E8 evidencia humana:** aportar consentimientos, declaración de independencia de la observadora y notas crudas, o declarar su ausencia definitiva.
 - **E8 integridad:** explicar la coincidencia de las respuestas con el documento previo.
 - **E8 reproducción:** incorporar un modo `SUMATIVO` al arnés, o declarar la corrida como no replicable con el material actual.
-- **Coherencia 07f:** actualizar la ficha del artefacto (sigue en "borrador", cita el hash `d0008733…` y declara pendiente el walkthrough cerrado el 2026-10-20).
-- **Coherencia 07e:** precisar que lo probado con WCF es el **cliente** real contra el doble (2/2), no el servicio real.
 - Unificar las dos rutas de ordenamiento (K6.EjecutarPlan y el bucle en `CoordinadorMetodo.Compensar`).
 - Definir el único responsable de cerrar una reserva `Registrada` sin confirmar (K5 o K7).
 - Decidir el alcance del segundo exemplar (`Ven06Revertir`).
