@@ -1,6 +1,6 @@
 # E8. Evaluación
 
-> **Estado:** en curso. Ciclo formativo **cerrado** el 2026-10-27 en tres corridas (dos de rediseño y una de lectura corregida): D1–D4 resueltos o declarados, control negativo confirmado y **versión congelada** (SHA-256 `ec9b8b6…`). Queda el ciclo sumativo.
+> **Estado:** **cerrado en la dimensión técnica; abierto en la de aplicabilidad.** Ciclo formativo cerrado el 2026-10-27 (D1–D4 resueltos o declarados, control negativo confirmado, versión congelada `ec9b8b6…`) y ciclo sumativo ejecutado el 2026-10-28 sobre la misma versión (§9). Los tres criterios de utilidad se cumplen en la medición técnica; el criterio de aplicabilidad **no se alcanzó** y se declara como evidencia exploratoria. Las hojas de las sesiones están pendientes de firma.
 
 ## 1. Posición en el marco FEDS
 
@@ -124,6 +124,8 @@ Juzgar la versión final contra los criterios congelados y medir la aplicabilida
 - Aplicabilidad: al menos el 80 % de las tareas sin ayuda y ningún punto crítico fallado por todos los participantes.
 - Ningún defecto crítico sin resolver o sin declarar.
 
+> **Resultado (2026-10-28):** el criterio de aplicabilidad **no se alcanzó**. El criterio no se modifica —se congeló en E6 para evitar HARKing—; el resultado se registra en §9.4.
+
 ## 5. Cronograma sugerido
 
 | Fase | Duración | Producto |
@@ -141,6 +143,8 @@ Juzgar la versión final contra los criterios congelados y medir la aplicabilida
 | Anahi Quisbert | 2026-10-20 | SOAT 3147 / 2026 | 8/8 tareas; 2/2 puntos críticos a la primera | Evidencia real |
 
 **Limitaciones:** mismo caso, misma organización, ambos junior. Se declaran; no se ocultan. Estas dos hojas miden aplicabilidad, no efectividad.
+
+> **Nota (2026-10-28):** estas dos hojas pertenecen al *walkthrough* de E7e. No forman parte del ciclo sumativo: en §9 los participantes son P1 y P2, con casos distintos, y sus hojas se clasifican como **piloto no verificado**. La hoja de Anahi Quisbert (2026-10-20) no se usa en el sumativo.
 
 ## 7. Ciclo formativo: resultados (2026-10-27)
 
@@ -167,7 +171,7 @@ La primera iteración produjo **5 recursos** con 5 invocaciones concurrentes. Se
 
 **Condición crítica:** ese lock es **de proceso**. Garantiza la idempotencia dentro de una instancia, pero **no entre instancias o servidores**. En un despliegue real con varias réplicas, la garantía debe venir de la **base de datos** (índice único + inserción atómica, Dc10) o de un lock distribuido. Debe declararse como límite y probarse con dos procesos, o el método no puede afirmar idempotencia distribuida.
 
-### D2, D3 y D4 (declarados, no resueltos)
+### D2, D3 y D4 (estado tras la primera iteración)
 
 - **D2:** `K2.MarcarAbandonada` no se invoca desde K5 ni K7. Asignar a **K7 como responsable único** y cablearlo. Afecta la garantía ante muerte entre reserva y ejecución.
 - **D3:** la ventana se evalúa en minutos enteros; no distingue 19:59 de 20:01. O se corrige a segundos, o se declara la ventana en minutos enteros en el método.
@@ -204,10 +208,69 @@ Los entregables están en `e8_evidencia/entregables_E8_formativo/`: LEEME, versi
 
 **Dos ajustes menores:** calificar "0 defectos abiertos" como "en los 11 escenarios, una instancia" en `version_congelada.md`; y unificar las rutas de reproducción (`..\evidencia_e7e` frente a `tesis_ds/e8_evidencia`), para que un tercero no falle al reproducir.
 
-## 9. Pendientes
+## 9. Ciclo sumativo: ejecución y resultados (2026-10-28)
+
+### 9.1 Condiciones
+
+- **Versión evaluada:** `E7e_MetodoCompensacion`, SHA-256 `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf`. Hash verificado antes de la corrida.
+- **Medio:** doble neutro `busa-eval-stub` en `localhost:5098`. Sin contacto con BUSA real.
+- **Casos:** CASO-A (`63442 / 4`, con duplicado histórico) y CASO-B (`1598416 / 1`, control). El doble parte de **cero recursos**: las dos filas históricas de CASO-A no se sembraron, por lo que **Dc10 no se ejercitó**. CASO-A se usa como llave lógica.
+- **Comparación:** método vs. conducta actual (5 reintentos, espera fija de 1000 ms, sin consulta de estado), sobre los mismos seis escenarios.
+- **Evidencia:** paquete del ciclo sumativo (14 archivos, 2026-10-28): `metricas.csv`, `metodo_crudo.md`, `linea_base_crudo.md`, `control_negativo_sumativo.md`, `hash_verificacion.txt` y `README_metricas.md`, más el informe, los resultados, la matriz, las amenazas, la prueba de la métrica y las dos hojas. Incorporado en `e8_evidencia/sumativo/`.
+
+### 9.2 Resultados técnicos
+
+| Métrica | Método | Línea base |
+|:--|--:|--:|
+| Escenario-caso que cumplen | 12/12 | 0/12 |
+| Recursos duplicados | 0 | 10 |
+| Compensaciones duplicadas | 0 | 6 |
+| Estados inconsistentes | 0 | 0 |
+| Consultas de estado | 6 | 0 |
+| Llamadas externas | 14 | 38 |
+
+Totales de referencia: el método creó 10 recursos y 2 compensaciones (0 duplicados); la línea base, 20 recursos y 8 compensaciones, es decir, 10 recursos y 6 compensaciones en exceso.
+
+**Control negativo:** por caso, sin K5 = 3 y con K5 = 1 (CASO-A y CASO-B). **No se ejecutó dentro de las sesiones humanas**; es un control técnico y se declara como limitación.
+
+**Invariancia del estado final (criterio 3):** no se re-midió en el sumativo, porque cada caso ejecuta E6 una sola vez. Se remite a la evidencia del ciclo formativo (S11).
+
+**Sobre "estados inconsistentes = 0":** el valor es 0 en ambos enfoques. No indica que la métrica no discrimine, sino que no hubo caso positivo observado; la definición y los casos sintéticos están en la evidencia del sumativo.
+
+### 9.3 Sesiones humanas
+
+Dos practicantes, casos distintos, una observadora; orden fijo E1→E6, sin aleatorización.
+
+| Participante | Caso | Duración | Tareas | Puntos críticos E2/E6 | Cuestionario |
+|:--|:--|--:|:--|:--|--:|
+| P1 (Leonel Chamaca Lima) | CASO-A | 50 min | 6/6 | 2/2 | 3,375 |
+| P2 (Ernesto Gutierrez) | CASO-B | 55 min | 6/6 | 2/2 | 3,25 |
+
+**Estatus: reportados, no verificados.** Las hojas no están firmadas (pendiente), no hay consentimientos, notas crudas ni declaración de independencia de la observadora, y no se explicó la coincidencia de las respuestas con un documento previo. El registro de "tareas sin ayuda" quedó como **no evaluable**. Por eso estos datos **no se usan para afirmar aplicabilidad**.
+
+### 9.4 Criterios congelados: resultado
+
+| Criterio (E6) | Resultado |
+|:--|:--|
+| Compensaciones con efecto duplicado = 0 | **Cumple** (técnico, 12/12) |
+| Operaciones con estado final inconsistente = 0 | **Cumple** (técnico) |
+| Estado final invariante en N de N | **No re-medido** en el sumativo; probado en el formativo (S11) |
+| Aplicabilidad: ≥ 80 % de tareas sin ayuda y ningún punto crítico fallado por todos | **NO ALCANZADO.** La ayuda no se registró (no evaluable) y los puntos críticos provienen de hojas sin firmar |
+| Ningún defecto crítico sin resolver o declarar | **Cumple:** el segundo fallo de consulta y Dc10 quedan declarados |
+
+### 9.5 Declaración de alcance
+
+> Idempotencia verificada en una instancia, con el doble neutro y en los seis escenarios de E6. La garantía distribuida depende de Dc10 (índice único e inserción atómica), que sigue como condición de despliegue. La aplicabilidad es **exploratoria**: dos participantes, piloto no verificado y sin medición de la ayuda.
+
+No se afirma idempotencia distribuida demostrada ni eficacia de aplicación por practicantes independientes.
+
+## 10. Pendientes
 
 - Ajustar el calificador de "0 defectos abiertos" y las rutas de reproducción del paquete.
 - Aplicar Dc10 (resolver los 44 duplicados y crear el índice único) o declararlo como condición abierta del alcance.
-- Ejecutar el ciclo sumativo con 2–3 practicantes, casos distintos y comparación contra la línea base.
+- **Firmar las hojas de P1 y P2** y anexar los escaneos; sin firma, los datos humanos siguen siendo piloto no verificado.
+- Aportar consentimientos, declaración de independencia de la observadora y notas crudas, o declarar su ausencia definitiva.
+- Explicar la coincidencia de las respuestas con un documento previo.
+- Incorporar un modo `SUMATIVO` al arnés, o declarar la corrida como no replicable con el material actual.
 - Repetir el control negativo en cada corrida.
 - Analizar y declarar las amenazas a la validez.

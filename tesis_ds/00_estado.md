@@ -26,7 +26,7 @@
 | E7d. Plan de construcción y versiones | cerrada | `07d_plan_construccion.md` | 2026-10-05 |
 | E7e. Construcción y verificación interna | cerrada | `07e_construccion_verificacion.md` | 2026-10-20 |
 | E7f. Ficha del artefacto | cerrada | `07f_ficha_artefacto.md` | 2026-10-20 |
-| E8. Evaluación | en curso | `08_evaluacion.md` | |
+| E8. Evaluación | cerrada en lo técnico; aplicabilidad exploratoria | `08_evaluacion.md` | 2026-10-28 |
 | E9. Enlace propuesta ↔ solución | pendiente | `09_enlace_solucion.md` | |
 | E10. Contribución y conclusiones | pendiente | `10_contribucion_conclusiones.md` | |
 
@@ -61,14 +61,18 @@
 | 2026-10-27 | Se corrige la lectura del contador de reservas (`resueltasPorEjecucion` vs `cerradasPorConfirmacion`; transición de estado = 1 en S7/S10) sin cambiar el artefacto, para preservar el hash. Se congela la versión `ec9b8b6…` y se declara el alcance exacto: idempotencia en una instancia; la distribuida depende de Dc10. | Cierre del ciclo formativo. Queda el ciclo sumativo. |
 | 2026-10-27 | Se consolida el paquete del ciclo formativo (`e8_evidencia/entregables_E8_formativo/`): cronología 1/2/3, contadores reconciliados, rutas corregidas y versión congelada `ec9b8b6…`. | Cierre formal del ciclo formativo. Ajustes menores: calificar "0 defectos abiertos" y unificar rutas de reproducción. Queda el ciclo sumativo. |
 | 2026-10-27 | Se verifica el RAR del testbed (hash `ec9b8b6…` coincide) y se reemplaza `tesis_ds/e7e-testbed` por su contenido, sin `obj/` ni `bin/`; el DLL congelado queda en `artefacto_congelado/`. Respaldo del testbed previo en `e8_evidencia/_backup/`. | El testbed del proyecto corresponde a la versión congelada. `Coordinador.csproj` conserva la referencia al proyecto original; para compilar en otro entorno hay que ajustarla o usar el DLL. |
+| 2026-10-28 | Se ejecuta el ciclo sumativo sobre la versión congelada `ec9b8b6…` (doble neutro, dos casos, seis escenarios): método 12/12 frente a 0/12 de la línea base; 0 recursos y 0 compensaciones duplicadas; 0 estados inconsistentes; 14 llamadas frente a 38; control negativo por caso 3 / 1. | Cierre de la dimensión **técnica** de E8. El control negativo no se ejecutó dentro de las sesiones humanas; la invariancia del estado final no se re-midió en el sumativo y se remite al formativo (S11). |
+| 2026-10-28 | Se ejecutan las sesiones humanas con P1 (Leonel Chamaca Lima, CASO-A) y P2 (Ernesto Gutierrez, CASO-B): 6/6 tareas cada uno, 2/2 puntos críticos E2/E6, 50 y 55 minutos, cuestionario 3,31/5. Las hojas quedan **sin firmar** y el registro de ayuda como **no evaluable**. | Los datos se clasifican como piloto reportado, no verificado: no hay consentimientos, notas crudas ni declaración de independencia, y no se explicó la coincidencia con un documento previo. No se usan para afirmar aplicabilidad. |
+| 2026-10-28 | Se declara que el criterio de aplicabilidad **no se alcanzó** y que la aplicabilidad es **exploratoria** (n = 2, piloto). No se modifica el criterio congelado en E6. | Evita HARKing: el criterio se registra como no alcanzado, no se reescribe. El paquete del sumativo se incorpora a `e8_evidencia/sumativo/` (14 archivos) y se corrigen sus inconsistencias internas: fechas, cita de la hoja, regla de conteo de ambigüedades, control negativo en ambas hojas, referencias 09–13 y puntos críticos definidos después del protocolo. |
 
 ## Preguntas abiertas
 
-- **E8 aplicabilidad:** declarar la versión entregada a Anahi, la ausencia de contacto entre evaluadores, si hubo ejecución o razonamiento, y obtener confirmación de cada evaluador.
+- **E8 firmas:** firmar las hojas de P1 y P2 y anexar los escaneos; hasta entonces los datos humanos siguen siendo piloto no verificado.
 - **Dc10:** aplicar el índice único (resolver los 44 duplicados) o declararlo como condición abierta de despliegue.
 - **D1 concurrencia:** la garantía es de una instancia; la distribuida depende de Dc10 (declarado).
-- **E8 sumativo:** definir y ejecutar la muestra (≥2–3 practicantes, casos distintos, idealmente uno externo).
-- Aplicar Dc10: resolver los 44 duplicados y crear el índice único.
+- **E8 evidencia humana:** aportar consentimientos, declaración de independencia de la observadora y notas crudas, o declarar su ausencia definitiva.
+- **E8 integridad:** explicar la coincidencia de las respuestas con el documento previo.
+- **E8 reproducción:** incorporar un modo `SUMATIVO` al arnés, o declarar la corrida como no replicable con el material actual.
 - Unificar las dos rutas de ordenamiento (K6.EjecutarPlan y el bucle en `CoordinadorMetodo.Compensar`).
 - Definir el único responsable de cerrar una reserva `Registrada` sin confirmar (K5 o K7).
 - Decidir el alcance del segundo exemplar (`Ven06Revertir`).
@@ -77,4 +81,4 @@
 
 ## Próximo paso
 
-- E8: aplicar D2 y D4, decidir D3, re-ejecutar y congelar la versión; después, el ciclo sumativo con practicantes y casos distintos.
+- E8 (cierre humano): firmar las hojas de P1 y P2, anexar los escaneos y sostener el criterio de aplicabilidad como exploratorio. Con eso, iniciar E9 (enlace propuesta ↔ solución).
