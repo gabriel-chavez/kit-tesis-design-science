@@ -64,9 +64,11 @@ Control negativo: no ejecutado dentro de la sesión. Se ejecutó por caso en la 
 
 ## Firmas
 
-| Rol | Nombre | Firma | Fecha |
-|:--|:--|:--|:--|
-| Participante | Ernesto Gutierrez | | |
-| Observadora | Micaela Machicado | | |
-| Tesista (responsable) | | | |
+| Rol | Nombre | C.I. | Firma | Fecha |
+|:--|:--|:--|:--|:--|
+| Participante | Ernesto Gutierrez | | | |
+| Observadora | Micaela Machicado | | | |
+| Tesista (responsable) | Luis Gabriel Chavez Ramos | | | |
+
+Al firmar, cada firmante declara haber leído el registro de esta hoja y que las respuestas y decisiones que se le atribuyen corresponden a lo que manifestó u observó en la sesión del 2026-10-28. La hoja fue transcrita el mismo día de la sesión.
 
