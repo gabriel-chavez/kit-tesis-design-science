@@ -6,6 +6,7 @@
 **Doble:** `busa-eval-stub`, neutro, `localhost:5098`
 **Observador:** Jose Luis Quispe
 **Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Anahi Quisbert, CASO-B)
+**Documentos firmados:** consentimientos y declaración del observador, 2026-10-30 (`firmas/escaneos/`); salvedad §4, campo «¿Pidió ayuda?» no evaluable.
 
 
 ## 1. Medición técnica
@@ -125,7 +126,7 @@
 
 ## 3. Hallazgos
 
-> Los hallazgos 1–6 provienen de las hojas **reportadas y no verificadas**; se leen como reporte, no como resultado certificado.
+> Los hallazgos 1–6 provienen de un **piloto con consentimiento y declaración firmados** (2026-10-30). No existen notas crudas independientes: las hojas de observación son el único registro. La coincidencia con el documento previo se explica por el tesista como cambio de formato sin traza documental, y la independencia del observador es parcial (misma organización; observó y registró, no validó de forma independiente). El campo «¿Pidió ayuda?» es **no evaluable** por la salvedad §4. Se leen como reporte atestiguado por el observador, no como resultado certificado. Detalle en `trazabilidad_evidencia_humana.md`.
 
 1. Ambos aplican identidad estable y consulta de estado.
 2. P1 identifica que la garantía en memoria no basta para producción; refuerza Dc10.

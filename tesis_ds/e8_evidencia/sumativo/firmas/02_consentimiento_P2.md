@@ -1,5 +1,7 @@
 # Consentimiento informado para el uso de registros de evaluación — P2
 
+> **Versión firmada:** `escaneos/02_consentimiento_P2_firmado.pdf` (firmado el 2026-10-30). Este archivo es la plantilla; la copia con las marcas y la firma está en el escaneo.
+
 | Campo | Dato |
 |:--|:--|
 | Participante | Anahi Quisbert |

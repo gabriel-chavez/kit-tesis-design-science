@@ -82,7 +82,7 @@ Los principios están **validados a nivel de clase y en entorno controlado**: ca
 |:--|:--|
 | Construcción | El artefacto implementa los principios y la verificación los distingue de la lógica del cliente |
 | Utilidad | Medida contra la línea base en los seis escenarios, en el doble |
-| Aplicabilidad | Exploratoria: dos participantes, piloto no verificado |
+| Aplicabilidad | Exploratoria: dos participantes, piloto con consentimiento y declaración firmados |
 | Generalización | Analítica, no estadística |
 
 ## 6. Cumplimiento de objetivos
@@ -117,7 +117,7 @@ Los principios **no aplican o no están demostrados** cuando:
 |:--|:--|:--|:--|
 | Constructo | El doble no es BUSA | Doble neutro, control negativo y enlace del cliente real (2/2) | No se afirma el comportamiento exacto del proveedor |
 | Interna | Aprendizaje y sesgo del observador | Casos distintos, observadora no autora, guion preestructurado | Sin aleatorización; una sola observadora; P1 ya conocía el método |
-| Interna | Datos humanos no verificados | Se clasifican como piloto y no se usan para afirmar aplicabilidad | Sin firmas, consentimientos, notas ni independencia acreditada |
+| Interna | Datos humanos con medición de ayuda no evaluable | Se clasifican como piloto y no se usan para afirmar aplicabilidad | Salvedad §4; sin notas crudas independientes; independencia parcial (misma organización); coincidencia con el documento previo no trazada |
 | Externa | Una organización, una cadena, dos casos | Se declaran; condiciones de contorno explícitas | No se generaliza a otras organizaciones ni a otros externos |
 | Conclusión | n = 2 en lo humano; una instancia en lo técnico | Conteos exactos; generalización analítica | No se estiman tasas poblacionales |
 | Conclusión | Idempotencia distribuida no probada | Se declara como condición de despliegue | La afirmación queda limitada a una instancia |

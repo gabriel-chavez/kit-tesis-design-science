@@ -46,9 +46,13 @@ No usar "idempotencia distribuida demostrada" ni equivalentes. El lock de D1 es 
 cd "tesis_ds\e7e-testbed"
 dotnet run --project busa-eval-stub --urls "http://localhost:5098"
 
-# Terminal 2 (desde tesis_ds/e7e-testbed; la evidencia se escribe en tesis_ds/e8_evidencia)
-dotnet run --project coordinador -- FORMATIVO "..\e8_evidencia"
-dotnet run --project coordinador -- VTODAS   "..\e8_evidencia"
+# Terminal 2 (desde el proyecto del coordinador, igual que en la corrida original)
+cd "tesis_ds\e7e-testbed\coordinador"
+# La evidencia se escribe en tesis_ds\e8_evidencia\reproduccion, sin sobrescribir este paquete
+dotnet run -- FORMATIVO "..\..\e8_evidencia\reproduccion"
+dotnet run -- VTODAS   "..\..\e8_evidencia\reproduccion"
 ```
+
+**Nota sobre la línea «Comando» de la evidencia.** `control_negativo.md` y `v3_resultados.md` incluyen una línea `dotnet run -- VTODAS ..\evidencia_e7e` porque esa fue la corrida original, ejecutada desde `coordinador` con la ruta de salida por defecto del arnés (`Program.cs`). Es parte del registro de esa corrida y **no se reescribe**. Para reproducir, use los comandos canónicos de arriba y compare los archivos generados en `reproduccion/` con los de este paquete.
 
 El hash permite comprobar que la evidencia corresponde a esta versión. Si el artefacto cambia, la evidencia deja de coincidir y la versión debe volver a congelarse.

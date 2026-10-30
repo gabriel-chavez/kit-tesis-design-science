@@ -30,7 +30,7 @@
 | E5 Reintento tras éxito | 1 / 0 | ConfirmarProcesada | 2 / 0 | Sí | No |
 | E6 Repetir anulación | 1 / 1 | Compensar | 1 / 4 | Sí | No |
 
-## 2. Matriz humana (piloto reportado, no verificado)
+## 2. Matriz humana (piloto con consentimiento y declaración firmados; ayuda no evaluable)
 
 | Escenario | P1 decisión | P1 tiempo | P1 punto por precisar | P2 decisión | P2 tiempo | P2 punto por precisar |
 |---|---|---|---|---|---|---|

@@ -4,6 +4,7 @@
 **Fecha:** 2026-10-28
 **Observador:** Jose Luis Quispe
 **Participantes:** P1 (Leonel Chamaca Lima) y P2 (Anahi Quisbert)
+**Documentos firmados:** consentimientos y declaración del observador, 2026-10-30 (`firmas/escaneos/`).
 
 ## 1. Constructo
 
@@ -19,8 +20,10 @@
 | Amenaza | Mitigación aplicada | Impacto residual |
 |---|---|---|
 | Aprendizaje entre escenarios. | Ambas sesiones siguieron E1→E6; no hubo aleatorización. Se declara. | El orden fijo puede favorecer la familiarización; no se contrabalanceó. |
-| Sesgo de la observadora. | Observadora no autora; hoja pre-estructurada. | Una sola observadora para ambas sesiones; se declara. |
-| Coincidencia literal con un documento previo ficticio. | Se declara; se requiere explicación o re-ejecución. | El origen de las respuestas no está acreditado. |
+| Sesgo de la observadora. | Observadora no autora; hoja pre-estructurada; declaración de independencia firmada (2026-10-30). | Una sola observadora y colega de la misma organización: independencia parcial. Su función fue registrar, no validar de forma independiente. |
+| §4 de la declaración con dos opciones marcadas («Marque una»). | Se registra como salvedad; el campo «¿Pidió ayuda?» se mantiene «no evaluable» y no se adopta la opción alternativa. | La medición de la ayuda queda inhabilitada con este material. |
+| Ausencia de notas crudas. | Se declara expresamente (2026-10-30): no hay notas originales independientes. Las hojas son el único registro y no se presentan como notas contemporáneas independientes. | La contemporaneidad de las hojas se apoya solo en la declaración del observador. |
+| Coincidencia literal con un documento previo ficticio. | El tesista declara que los ajustes fueron de formato, estructura y presentación, sin alterar el contenido sustantivo. | No hay diff entre versiones: la explicación no está documentada y el origen de las respuestas sigue sin acreditar. |
 | El autor conoce el método. | El autor no observa ni completa hojas. | La preparación del entorno sigue a su cargo. |
 | P1 y P2 comparten la duda del segundo fallo de consulta. | Se declara como laguna de la guía, no como fallo de decisión. | La guía queda incompleta en ese punto. |
 | Reutilizar la línea base de E6. | Se re-ejecutó sobre el mismo doble neutro. | La línea base es una simplificación de 5 reintentos con espera fija de 1000 ms. |

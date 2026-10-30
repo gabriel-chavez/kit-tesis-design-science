@@ -1,5 +1,7 @@
 # Declaración del observador
 
+> **Versión firmada:** `escaneos/03_declaracion_observador_firmada.pdf` (firmada el 2026-10-30). Este archivo es la plantilla; la copia con las marcas y la firma está en el escaneo. **Salvedad:** en §4 quedaron marcadas dos opciones incompatibles; el campo «¿Pidió ayuda?» se mantiene «no evaluable». Detalle en `escaneos/00_LEEME_ESCANEOS.md`.
+
 | Campo | Dato |
 |:--|:--|
 | Nombre | Jose Luis Quispe |

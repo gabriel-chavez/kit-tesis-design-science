@@ -75,7 +75,7 @@ Derivados de `02_delimitacion.md` §1.2 y de `06_diagnostico.md` §5–§7:
 | **C3** Cubrir los seis escenarios | — | — | 6 de 6 | Sumativo 6/6 en dos casos; formativo 11 escenarios | **Cumple** | Los escenarios los fijó el investigador |
 | **C4** No bloquear el hilo | Dc6 | K4, K9 | Sin `Thread.Sleep` en el camino crítico | V7 (inspección de código) | **Cumple** (inspección) | Sin prueba de carga ni de concurrencia sostenida |
 | **C5** Costo razonable | — | — | Un equipo puede adoptarlo | **Sin medición** | **No verificado** | No se midió esfuerzo de implementación ni costo operativo |
-| **C6** Aplicable por terceros | — | — | Practicantes independientes sin ayuda | Walkthrough E7e (n = 2); sumativo P1/P2 | **No alcanzado** | Sin registro de ayuda; hojas sin firmar; aplicabilidad exploratoria |
+| **C6** Aplicable por terceros | — | — | Practicantes independientes sin ayuda | Walkthrough E7e (n = 2); sumativo P1/P2 | **No alcanzado** | Ayuda no registrada (no evaluable); n = 2; observador de la misma organización (independencia parcial); sin notas crudas; aplicabilidad exploratoria |
 
 ## 6. Verificación de eslabones
 
@@ -118,7 +118,7 @@ Derivados de `02_delimitacion.md` §1.2 y de `06_diagnostico.md` §5–§7:
 |:--|:--|:--|
 | Formativo (11 escenarios) | Defectos y rediseño | D1–D4 resueltos o declarados; versión congelada |
 | Sumativo técnico | Utilidad frente a la línea base | 12/12 frente a 0/12; 0 duplicados frente a 10 recursos y 6 compensaciones duplicadas |
-| Sumativo humano | Aplicabilidad | **No alcanzado** (ayuda no registrada; hojas sin firmar) |
+| Sumativo humano | Aplicabilidad | **No alcanzado** (ayuda no registrada; n = 2) |
 
 ## 8. Afirmaciones: respaldo y decisión
 
@@ -129,7 +129,7 @@ Derivados de `02_delimitacion.md` §1.2 y de `06_diagnostico.md` §5–§7:
 | 3 | Distingue procesado / no procesado / indeterminado | Sí: V1, V4, sumativo E2/E3 | **Se mantiene**, con estados simulados |
 | 4 | Garantiza idempotencia distribuida | **No**: Dc10 sin aplicar | **Se retira**. Queda como condición de despliegue |
 | 5 | Funciona dentro de la cadena real de pagos | **No**: cadena no ejecutada | **Se retira**. Solo se afirma el enlace del cliente externo (2/2) |
-| 6 | Es aplicable por practicantes sin ayuda | **No**: ayuda no registrada, hojas sin firmar | **Se degrada** a "aplicabilidad exploratoria, n = 2 piloto" |
+| 6 | Es aplicable por practicantes sin ayuda | **No**: ayuda no registrada (no evaluable); n = 2 | **Se degrada** a "aplicabilidad exploratoria, n = 2 piloto" |
 | 7 | Reduce el tiempo de resolución (9,67 h) | **No medido** después del método | **Se retira**. El dato es del diagnóstico, no del resultado |
 | 8 | Reduce el costo operativo | **No medido** | **Se retira** |
 | 9 | Cubre los seis modos de fallo | Sí: 6/6 con taxonomía propia | **Se mantiene** con la salvedad de que la taxonomía la definió el investigador |
@@ -142,7 +142,7 @@ Derivados de `02_delimitacion.md` §1.2 y de `06_diagnostico.md` §5–§7:
 3. **Compensación acotada.** La acción compensatoria disponible es anular el QR no pagado (Dc8). No hay reversión de pagos ejecutados.
 4. **Integración parcial.** Los saltos internos reales no se ejecutaron; la cadena completa tampoco.
 5. **Reconciliación no operada.** Se probó el componente, no su ejecución programada con el servicio de Windows.
-6. **Aplicabilidad exploratoria.** Dos practicantes, un piloto no verificado, ayuda no registrada.
+6. **Aplicabilidad exploratoria.** Dos practicantes, un piloto con consentimiento y declaración firmados, ayuda no registrada, independencia parcial del observador y ausencia de notas crudas independientes.
 7. **Costo no medido.** C5 no tiene evidencia.
 8. **Fuera de alcance.** Conciliación financiera con el banco, canales de tarjeta y Tigo Money.
 

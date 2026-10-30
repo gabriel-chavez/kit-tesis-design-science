@@ -4,6 +4,8 @@ entrega_*/
 
 # Salidas y binarios
 *.pdf
+# Excepción: escaneos firmados que son evidencia del cierre humano de E8
+!tesis_ds/e8_evidencia/sumativo/firmas/escaneos/*.pdf
 *.docx
 *.aux
 *.log

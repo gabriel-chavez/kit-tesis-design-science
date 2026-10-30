@@ -1,6 +1,6 @@
 # E8. Evaluación
 
-> **Estado:** **cerrado en la dimensión técnica; abierto en la de aplicabilidad.** Ciclo formativo cerrado el 2026-10-27 (D1–D4 resueltos o declarados, control negativo confirmado, versión congelada `ec9b8b6…`) y ciclo sumativo ejecutado el 2026-10-28 sobre la misma versión (§9). Los tres criterios de utilidad se cumplen en la medición técnica; el criterio de aplicabilidad **no se alcanzó** y se declara como evidencia exploratoria. Las hojas de las sesiones están pendientes de firma.
+> **Estado:** **cerrado en la dimensión técnica; abierto en la de aplicabilidad.** Ciclo formativo cerrado el 2026-10-27 (D1–D4 resueltos o declarados, control negativo confirmado, versión congelada `ec9b8b6…`) y ciclo sumativo ejecutado el 2026-10-28 sobre la misma versión (§9). Los tres criterios de utilidad se cumplen en la medición técnica; el criterio de aplicabilidad **no se alcanzó** y se declara como evidencia exploratoria. Los consentimientos de P1 y P2 y la declaración del observador están firmados y archivados (2026-10-30); la declaración tiene una salvedad en §4, por la que el campo «¿Pidió ayuda?» se mantiene **no evaluable**.
 
 ## 1. Posición en el marco FEDS
 
@@ -144,7 +144,7 @@ Juzgar la versión final contra los criterios congelados y medir la aplicabilida
 
 **Limitaciones:** mismo caso, misma organización, ambos junior. Se declaran; no se ocultan. Estas dos hojas miden aplicabilidad, no efectividad.
 
-> **Nota (2026-10-28):** estas dos hojas pertenecen al *walkthrough* de E7e. No forman parte del ciclo sumativo: en §9 los participantes son P1 y P2, con casos distintos, y sus hojas se clasifican como **piloto no verificado**. La hoja de Anahi Quisbert (2026-10-20) no se usa en el sumativo.
+> **Nota (2026-10-28; actualizada el 2026-10-30):** estas dos hojas pertenecen al *walkthrough* de E7e. No forman parte del ciclo sumativo: en §9 los participantes son P1 y P2, con casos distintos, y sus registros se clasifican como **piloto con consentimiento y declaración firmados** (aplicabilidad no alcanzada). La hoja de Anahi Quisbert (2026-10-20) no se usa en el sumativo.
 
 ## 7. Ciclo formativo: resultados (2026-10-27)
 
@@ -206,7 +206,7 @@ Se refiere a los escenarios probados en una instancia. **Dc10 sigue abierto**: s
 
 Los entregables están en `e8_evidencia/entregables_E8_formativo/`: LEEME, versión congelada, rediseño, resultados, control negativo y regresión. La cronología (iteración 1: detección; 2: rediseño; 3: corrección de lectura) y las rutas quedaron corregidas.
 
-**Dos ajustes menores:** calificar "0 defectos abiertos" como "en los 11 escenarios, una instancia" en `version_congelada.md`; y unificar las rutas de reproducción (`..\evidencia_e7e` frente a `tesis_ds/e8_evidencia`), para que un tercero no falle al reproducir.
+**Ajustes aplicados (2026-10-30):** el calificador «0 defectos abiertos en los 11 escenarios, una instancia» consta en `00_LEEME_ENTREGABLES.md` y `version_congelada.md`; la reproducción quedó unificada en `version_congelada.md` § Reproducción y en el LEEME, con salida a `e8_evidencia/reproduccion/`. Los archivos de evidencia conservan la línea «Comando» de la corrida original (`..\evidencia_e7e`, desde `coordinador`) como registro, y el LEEME explica por qué no es la ruta de reproducción.
 
 ## 9. Ciclo sumativo: ejecución y resultados (2026-10-28)
 
@@ -246,7 +246,19 @@ Dos practicantes, casos distintos, una observadora; orden fijo E1→E6, sin alea
 | P1 (Leonel Chamaca Lima) | CASO-A | 50 min | 6/6 | 2/2 | 3,375 |
 | P2 (Anahi Quisbert) | CASO-B | 55 min | 6/6 | 2/2 | 3,25 |
 
-**Estatus: reportados, no verificados.** Las hojas no están firmadas (pendiente), no hay consentimientos, notas crudas ni declaración de independencia de la observadora, y no se explicó la coincidencia de las respuestas con un documento previo. El registro de "tareas sin ayuda" quedó como **no evaluable**. Por eso estos datos **no se usan para afirmar aplicabilidad**.
+**Estatus: piloto con consentimiento y declaración firmados; aplicabilidad no alcanzada.** El 2026-10-30 se archivaron los consentimientos de P1 y P2 y la declaración del observador (`e8_evidencia/sumativo/firmas/escaneos/`). La declaración acredita presencia en ambas sesiones, independencia declarada (colega de la misma organización, sin relación jerárquica) y autoría del registro. Quedan tres límites: (i) en §4 de la declaración se marcaron dos opciones incompatibles y la segunda condicionaba la firma a corregir las hojas a "no pidió ayuda", corrección que no se hizo; por eso el campo "¿Pidió ayuda?" se mantiene **no evaluable** y **no** se adopta la afirmación "no hubo solicitudes de ayuda"; (ii) no existen notas crudas independientes: las hojas son el único registro y su contemporaneidad se apoya en la declaración del observador; (iii) la coincidencia con un documento previo se explica por el tesista como cambio de formato, sin diff entre versiones que lo acredite (§9.3.1). Con n = 2 y sin medición de la ayuda, estos datos **no se usan para afirmar aplicabilidad**.
+
+#### 9.3.1 Trazabilidad de la evidencia humana (2026-10-30)
+
+El detalle está en `e8_evidencia/sumativo/trazabilidad_evidencia_humana.md`. Se registran tres declaraciones:
+
+| Objeción | Declaración registrada | Grado |
+|:--|:--|:--|
+| Coincidencia con el documento previo | Los ajustes fueron de formato, estructura y presentación, sin modificar el contenido sustantivo ni los resultados; las coincidencias provienen de conservar la información de base | **Declaración del tesista, sin traza documental** (no hay diff entre versiones) |
+| Notas crudas | **No existen notas originales independientes**; las hojas de observación son el único registro y su contemporaneidad se apoya solo en la declaración del observador | **Ausencia declarada**; no se presentan las hojas como notas contemporáneas independientes |
+| Independencia del observador | Es colega de la misma organización y no existe relación jerárquica; se distingue la función de observación y registro de la validación independiente de resultados | **Independencia parcial**; la validación independiente **no se ejerció** |
+
+Ninguna de las tres eleva el grado de la evidencia: la aplicabilidad sigue **no alcanzada**. La primera queda como brecha de trazabilidad; la segunda, como límite de verificación; la tercera, como límite de independencia.
 
 ### 9.4 Criterios congelados: resultado
 
@@ -255,22 +267,23 @@ Dos practicantes, casos distintos, una observadora; orden fijo E1→E6, sin alea
 | Compensaciones con efecto duplicado = 0 | **Cumple** (técnico, 12/12) |
 | Operaciones con estado final inconsistente = 0 | **Cumple** (técnico) |
 | Estado final invariante en N de N | **No re-medido** en el sumativo; probado en el formativo (S11) |
-| Aplicabilidad: ≥ 80 % de tareas sin ayuda y ningún punto crítico fallado por todos | **NO ALCANZADO.** La ayuda no se registró (no evaluable) y los puntos críticos provienen de hojas sin firmar |
+| Aplicabilidad: ≥ 80 % de tareas sin ayuda y ningún punto crítico fallado por todos | **NO ALCANZADO.** La ayuda no se registró (no evaluable); los puntos críticos constan en hojas atestiguadas por el observador, pero con n = 2 y sin medición de la ayuda |
 | Ningún defecto crítico sin resolver o declarar | **Cumple:** el segundo fallo de consulta y Dc10 quedan declarados |
 
 ### 9.5 Declaración de alcance
 
-> Idempotencia verificada en una instancia, con el doble neutro y en los seis escenarios de E6. La garantía distribuida depende de Dc10 (índice único e inserción atómica), que sigue como condición de despliegue. La aplicabilidad es **exploratoria**: dos participantes, piloto no verificado y sin medición de la ayuda.
+> Idempotencia verificada en una instancia, con el doble neutro y en los seis escenarios de E6. La garantía distribuida depende de Dc10 (índice único e inserción atómica), que sigue como condición de despliegue. La aplicabilidad es **exploratoria**: dos participantes, piloto con consentimiento y declaración firmados, sin medición de la ayuda.
 
 No se afirma idempotencia distribuida demostrada ni eficacia de aplicación por practicantes independientes.
 
 ## 10. Pendientes
 
-- Ajustar el calificador de "0 defectos abiertos" y las rutas de reproducción del paquete.
+- **Probar la reproducción desde cero** con las rutas canónicas de `version_congelada.md`; la unificación está documentada pero no se ejecutó después del cambio.
 - Aplicar Dc10 (resolver los 44 duplicados y crear el índice único) o declararlo como condición abierta del alcance.
-- **Firmar las hojas de P1 y P2** y anexar los escaneos; sin firma, los datos humanos siguen siendo piloto no verificado.
-- Aportar consentimientos, declaración de independencia de la observadora y notas crudas, o declarar su ausencia definitiva.
-- Explicar la coincidencia de las respuestas con un documento previo.
+- **Resolver la salvedad §4** de la declaración del observador (dos opciones marcadas): fe de errata o re-firma con una sola opción. Mientras tanto el campo «¿Pidió ayuda?» queda «no evaluable».
+- **Trazabilidad de la coincidencia:** anexar el diff entre el documento previo y las versiones actuales, con la lista de cambios de presentación. Mientras no exista, la explicación queda como declaración del tesista.
+- Notas crudas: **ausencia declarada** el 2026-10-30. No hay nada más que aportar; las hojas son el único registro.
+- Independencia: **parcial** (misma organización). Para independencia plena, incorporar un observador externo en una réplica futura.
 - Incorporar un modo `SUMATIVO` al arnés, o declarar la corrida como no replicable con el material actual.
 - Repetir el control negativo en cada corrida.
 - Analizar y declarar las amenazas a la validez.

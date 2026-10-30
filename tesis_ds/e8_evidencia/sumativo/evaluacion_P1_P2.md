@@ -5,6 +5,7 @@
 **Versión evaluada:** `E7e_MetodoCompensacion`, SHA-256 `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf`
 **Doble:** `busa-eval-stub`, neutro, `localhost:5098`
 **Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Anahi Quisbert, CASO-B)
+**Documentos firmados:** consentimientos de P1 y P2 y declaración del observador, 2026-10-30 (`firmas/escaneos/`). Salvedad §4: campo «¿Pidió ayuda?» no evaluable.
 
 
 ## 1. Datos generales
@@ -125,5 +126,14 @@
 3. **P2 necesita apoyo operativo:** dónde consultar la evidencia y qué significa “reserva”. Es una mejora de material, no del método.
 4. **Ambos comparten una laguna:** qué hacer cuando la consulta de estado también falla (segundo fallo). La guía debe explicitar la regla de estado indeterminado.
 5. **Confianza baja en producción (2/5 en ambos):** coherente con que Dc10 no está aplicado. No es un fallo del método; es una condición de despliegue declarada.
-6. **Tiempo:** 50 y 55 min; dentro del rango previsto. La ayuda no se midió; la hoja dice “no evaluable”.
+6. **Tiempo:** 50 y 55 min; dentro del rango previsto. La ayuda no se midió; la hoja dice “no evaluable” y no se adopta la afirmación alternativa de la declaración del observador (salvedad §4).
+
+## 8. Trazabilidad y límites de estos registros
+
+Ver `trazabilidad_evidencia_humana.md`. En resumen:
+
+- **Fuente:** las hojas de observación son el único registro. **No existen notas crudas independientes** (declarado el 2026-10-30); su contemporaneidad se apoya en la declaración del observador.
+- **Coincidencia con el documento previo:** el tesista declara que los ajustes fueron de formato y presentación, sin cambiar el contenido; no hay diff entre versiones que lo acredite.
+- **Independencia:** parcial (observador colega de la misma organización); observó y registró, no validó de forma independiente.
+- **Ayuda:** no evaluable (salvedad §4).
 
