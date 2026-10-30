@@ -14,6 +14,22 @@
 | `v3_resultados.md` | Regresión V1-V8 |
 | `control_negativo.md` | Sin K5 = 3 efectos; con K5 = 1 |
 
+## Reproducción
+
+Rutas canónicas (detalle en `version_congelada.md` § Reproducción):
+
+```powershell
+# Terminal 1
+cd "tesis_ds\e7e-testbed"
+dotnet run --project busa-eval-stub --urls "http://localhost:5098"
+
+# Terminal 2, desde tesis_ds\e7e-testbed\coordinador
+dotnet run -- FORMATIVO "..\..\e8_evidencia\reproduccion"
+dotnet run -- VTODAS   "..\..\e8_evidencia\reproduccion"
+```
+
+La salida va a `tesis_ds/e8_evidencia/reproduccion/` y no sobrescribe este paquete. La línea «Comando» que aparece dentro de `control_negativo.md` y `v3_resultados.md` registra la corrida original (`..\evidencia_e7e`, desde `coordinador`) y se conserva como parte de la evidencia; no es la ruta de reproducción.
+
 ## Frase para tesis y defensa
 
 > Idempotencia verificada en una instancia; la garantía distribuida depende de Dc10 (índice único e inserción atómica), que queda como condición de despliegue.

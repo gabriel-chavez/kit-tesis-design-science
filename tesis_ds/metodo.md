@@ -1,6 +1,6 @@
 # Método de compensación idempotente con verificación de estado
 
-> **Estado:** construcción y verificación técnica **ejecutadas** (V1–V8 cumplen; ver sección 7). Para cerrar E7e falta el **walkthrough de un practicante independiente**. La evidencia verifica el método, **no su despliegue** (ver secciones 8 y 9).
+> **Estado:** construcción y verificación técnica **ejecutadas** (V1–V8 cumplen; ver sección 7) y walkthrough independiente **cumplido** (2026-10-16, informe 2026-10-20). La evidencia verifica el método, **no su despliegue** (ver secciones 8 y 9). Versión congelada: SHA-256 `ec9b8b6e…` (43.520 bytes).
 >
 > Archivo de la etapa: `07e_construccion_verificacion.md`. Diseño de referencia: `07c_diseno_artefacto.md`. Requisitos: `07b_requisitos.md`. Plan y versiones: `07d_plan_construccion.md`.
 
@@ -211,10 +211,10 @@ Se conservan las decisiones Dc1–Dc13 y los refinamientos Dc10–Dc12 documenta
 
 **Revisión por expertos:**
 
-- **Walkthrough con practicante independiente: pendiente.** El guion está preparado; no hay practicante asignado. Es lo único que falta para cerrar E7e y no puede cumplirlo el constructor.
+- **Walkthrough con practicante independiente: cumplido** (2026-10-16; informe 2026-10-20; 6/8 tareas y 0/2 puntos críticos a la primera). Los tres cambios derivados se aplicaron al método (INDETERMINADO, mapeo lógico↔físico, Reserva-Ejecución-Confirmación). Se sumó una segunda hoja de aplicabilidad (2026-10-20) que no sustituye un ciclo de evaluación.
 - Revisión experta (Senior .NET / Sagas): pendiente.
 
-**Trazabilidad:** artefacto ejecutado el 2026-10-13; SHA-256 `d0008733…`; doble `busa-eval-stub` en `http://localhost:5098`.
+**Trazabilidad:** artefacto ejecutado el 2026-10-13; versión congelada el 2026-10-27; SHA-256 `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf`; doble `busa-eval-stub` en `http://localhost:5098`.
 
 ## 8. Exemplar de aplicación
 
@@ -224,7 +224,7 @@ Se conservan las decisiones Dc1–Dc13 y los refinamientos Dc10–Dc12 documenta
   - la **cadena completa no se ejecutó**; los dos saltos son adaptadores (`InyectorSaltoInterno`, `ServicioExternoHttp`), no `CNPagosQR` ni `CPagoSimple`;
   - el **DDL de Dc10 no se aplicó** (queda pendiente por los 44 duplicados de E6) y la tabla de idempotencia no existe en ninguna base;
   - los **adaptadores reales no se escribieron** (WCF para el externo, `T_QR_SOLICITUD` para la bitácora);
-  - el **walkthrough independiente no se ejecutó**.
+  - el cliente WCF real de BUSA **enlaza con el doble** (2/2), pero el servicio real no se invocó;
   - El doble no es BUSA real; no se cubre la reversión de pagos ya ejecutados.
 
 ## 9. Limitaciones conocidas

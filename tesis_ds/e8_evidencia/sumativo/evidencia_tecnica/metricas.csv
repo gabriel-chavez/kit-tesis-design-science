@@ -1,0 +1,25 @@
+caso,participante,enfoque,escenario,recursos,compensaciones,estado_bitacora,estado_externo,decision,llamadas,consultas,latencia_ms,inconsistente,cumple
+CASO-A,P1,metodo,"E1 Caida a mitad",0,0,NoProcesada,SOLICITADO,"Reprocesar",1,1,33,0,1
+CASO-A,P1,linea_base,"E1 Caida a mitad",0,0,Error,SOLICITADO,"sin K4",5,0,5070,0,0
+CASO-A,P1,metodo,"E2 Timeout",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,1,2016,0,1
+CASO-A,P1,linea_base,"E2 Timeout",2,0,Procesada,SOLICITADO,"sin K4",2,0,3016,0,0
+CASO-A,P1,metodo,"E3 Respuesta perdida",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,1,2,0,1
+CASO-A,P1,linea_base,"E3 Respuesta perdida",2,0,Procesada,SOLICITADO,"sin K4",2,0,1011,0,0
+CASO-A,P1,metodo,"E4 Solicitud duplicada",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,0,1,0,1
+CASO-A,P1,linea_base,"E4 Solicitud duplicada",3,0,Procesada,SOLICITADO,"sin K4",3,0,1,0,0
+CASO-A,P1,metodo,"E5 Reintento tras exito",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,0,0,0,1
+CASO-A,P1,linea_base,"E5 Reintento tras exito",2,0,Procesada,SOLICITADO,"sin K4",2,0,0,0,0
+CASO-A,P1,metodo,"E6 Fallo al repetir anulacion",1,1,Compensada,ANULADO,"Compensar",2,0,5,0,1
+CASO-A,P1,linea_base,"E6 Fallo al repetir anulacion",1,4,Compensada,ANULADO,"sin K4",5,0,1018,0,0
+CASO-B,P2,metodo,"E1 Caida a mitad",0,0,NoProcesada,SOLICITADO,"Reprocesar",1,1,3,0,1
+CASO-B,P2,linea_base,"E1 Caida a mitad",0,0,Error,SOLICITADO,"sin K4",5,0,5069,0,0
+CASO-B,P2,metodo,"E2 Timeout",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,1,2012,0,1
+CASO-B,P2,linea_base,"E2 Timeout",2,0,Procesada,SOLICITADO,"sin K4",2,0,3030,0,0
+CASO-B,P2,metodo,"E3 Respuesta perdida",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,1,2,0,1
+CASO-B,P2,linea_base,"E3 Respuesta perdida",2,0,Procesada,SOLICITADO,"sin K4",2,0,1015,0,0
+CASO-B,P2,metodo,"E4 Solicitud duplicada",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,0,0,0,1
+CASO-B,P2,linea_base,"E4 Solicitud duplicada",3,0,Procesada,SOLICITADO,"sin K4",3,0,1,0,0
+CASO-B,P2,metodo,"E5 Reintento tras exito",1,0,Procesada,SOLICITADO,"ConfirmarProcesada",1,0,0,0,1
+CASO-B,P2,linea_base,"E5 Reintento tras exito",2,0,Procesada,SOLICITADO,"sin K4",2,0,0,0,0
+CASO-B,P2,metodo,"E6 Fallo al repetir anulacion",1,1,Compensada,ANULADO,"Compensar",2,0,2,0,1
+CASO-B,P2,linea_base,"E6 Fallo al repetir anulacion",1,4,Compensada,ANULADO,"sin K4",5,0,1005,0,0
