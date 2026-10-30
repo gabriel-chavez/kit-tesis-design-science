@@ -2,8 +2,8 @@
 
 **Versión:** `E7e_MetodoCompensacion`, SHA-256 `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf`
 **Fecha de sesiones:** 2026-10-28
-**Observadora:** Micaela Machicado
-**Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Ernesto Gutierrez, CASO-B)
+**Observador:** Jose Luis Quispe
+**Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Anahi Quisbert, CASO-B)
 
 
 ## 1. Matriz técnica

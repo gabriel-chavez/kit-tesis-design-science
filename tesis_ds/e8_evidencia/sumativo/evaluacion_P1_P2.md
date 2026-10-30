@@ -1,24 +1,24 @@
 # Evaluación del ciclo sumativo - P1 y P2
 
 **Fecha de las sesiones:** 2026-10-28
-**Observadora:** Micaela Machicado
+**Observador:** Jose Luis Quispe
 **Versión evaluada:** `E7e_MetodoCompensacion`, SHA-256 `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf`
 **Doble:** `busa-eval-stub`, neutro, `localhost:5098`
-**Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Ernesto Gutierrez, CASO-B)
+**Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Anahi Quisbert, CASO-B)
 
 
 ## 1. Datos generales
 
 | Dato | P1 | P2 |
 |---|---|---|
-| Participante | Leonel Chamaca Lima | Ernesto Gutierrez |
+| Participante | Leonel Chamaca Lima | Anahi Quisbert |
 | Perfil | Desarrollador .NET/WCF | Analista/desarrollador sin exposición previa |
 | Caso | CASO-A (`63442 / 4`) | CASO-B (`1598416 / 1`) |
 | Fecha | 2026-10-28 | 2026-10-28 |
 | Inicio | 09:00 | 11:00 |
 | Fin | 09:50 | 11:55 |
 | Duración | 50 min 00 s | 55 min 00 s |
-| Observadora | Micaela Machicado | Micaela Machicado |
+| Observador | Jose Luis Quispe | Jose Luis Quispe |
 
 ## 2. Registro temporal
 

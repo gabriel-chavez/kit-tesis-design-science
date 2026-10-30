@@ -244,7 +244,7 @@ Dos practicantes, casos distintos, una observadora; orden fijo E1→E6, sin alea
 | Participante | Caso | Duración | Tareas | Puntos críticos E2/E6 | Cuestionario |
 |:--|:--|--:|:--|:--|--:|
 | P1 (Leonel Chamaca Lima) | CASO-A | 50 min | 6/6 | 2/2 | 3,375 |
-| P2 (Ernesto Gutierrez) | CASO-B | 55 min | 6/6 | 2/2 | 3,25 |
+| P2 (Anahi Quisbert) | CASO-B | 55 min | 6/6 | 2/2 | 3,25 |
 
 **Estatus: reportados, no verificados.** Las hojas no están firmadas (pendiente), no hay consentimientos, notas crudas ni declaración de independencia de la observadora, y no se explicó la coincidencia de las respuestas con un documento previo. El registro de "tareas sin ayuda" quedó como **no evaluable**. Por eso estos datos **no se usan para afirmar aplicabilidad**.
 

@@ -7,14 +7,14 @@ Se completa a medida que se recogen las firmas. No se firma.
 | Documento | Persona | Fecha de firma | Recibido | Escaneo | Observación |
 |:--|:--|:--|:--:|:--:|:--|
 | `01_consentimiento_P1.md` | Leonel Chamaca Lima | | ☐ | ☐ | |
-| `02_consentimiento_P2.md` | Ernesto Gutierrez | | ☐ | ☐ | |
+| `02_consentimiento_P2.md` | Anahi Quisbert | | ☐ | ☐ | |
 | `hoja_observacion_P1_CASO-A.md` | Leonel Chamaca Lima | | ☐ | ☐ | |
-| `hoja_observacion_P1_CASO-A.md` | Micaela Machicado | | ☐ | ☐ | |
+| `hoja_observacion_P1_CASO-A.md` | Jose Luis Quispe | | ☐ | ☐ | |
 | `hoja_observacion_P1_CASO-A.md` | Luis Gabriel Chavez Ramos | | ☐ | ☐ | |
-| `hoja_observacion_P2_CASO-B.md` | Ernesto Gutierrez | | ☐ | ☐ | |
-| `hoja_observacion_P2_CASO-B.md` | Micaela Machicado | | ☐ | ☐ | |
+| `hoja_observacion_P2_CASO-B.md` | Anahi Quisbert | | ☐ | ☐ | |
+| `hoja_observacion_P2_CASO-B.md` | Jose Luis Quispe | | ☐ | ☐ | |
 | `hoja_observacion_P2_CASO-B.md` | Luis Gabriel Chavez Ramos | | ☐ | ☐ | |
-| `03_declaracion_observadora.md` | Micaela Machicado | | ☐ | ☐ | |
+| `03_declaracion_observadora.md` | Jose Luis Quispe | | ☐ | ☐ | |
 | `04_declaracion_tesista.md` | Luis Gabriel Chavez Ramos | | ☐ | ☐ | |
 
 ## 2. Incidencias

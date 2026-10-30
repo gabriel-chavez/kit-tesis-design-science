@@ -4,11 +4,11 @@
 **Etapa:** E8 - Evaluación sumativa
 **Fecha de sesiones:** 2026-10-87
 **Versión evaluada:** `E7e_MetodoCompensacion` (netstandard2.0), SHA-256 `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf`
-**Observadora:** Micaela Machicado
+**Observador:** Jose Luis Quispe
 
 ## Resumen
 
-Se ejecutó el ciclo sumativo con dos practicantes y una observadora. En la medición técnica, el método congelado cumplió 12/12 escenario-caso y la línea base 0/12; el método no duplicó recursos ni compensaciones, y el control negativo se confirmó (sin K5 = 3; con K5 = 1). En las hojas aportadas por el tesista (piloto no verificado), P1 (Leonel Chamaca Lima, CASO-A) y P2 (Ernesto Gutierrez, CASO-B) reportan los seis escenarios, con 2/2 puntos críticos E2/E6 cada uno, 50 y 55 minutos, y un promedio de cuestionario de 3,31/5. Ambos identificaron la misma laguna de guía: qué hacer cuando la consulta de estado también falla. La confianza en producción fue baja (2/5), coherente con que Dc10 no está aplicado. La evidencia **técnica** sostiene idempotencia verificada en una instancia; la evidencia **humana** no está verificada y no se usa para afirmar aplicabilidad. No se sostiene idempotencia distribuida.
+Se ejecutó el ciclo sumativo con dos practicantes y un observador. En la medición técnica, el método congelado cumplió 12/12 escenario-caso y la línea base 0/12; el método no duplicó recursos ni compensaciones, y el control negativo se confirmó (sin K5 = 3; con K5 = 1). En las hojas aportadas por el tesista (piloto no verificado), P1 (Leonel Chamaca Lima, CASO-A) y P2 (Anahi Quisbert, CASO-B) reportan los seis escenarios, con 2/2 puntos críticos E2/E6 cada uno, 50 y 55 minutos, y un promedio de cuestionario de 3,31/5. Ambos identificaron la misma laguna de guía: qué hacer cuando la consulta de estado también falla. La confianza en producción fue baja (2/5), coherente con que Dc10 no está aplicado. La evidencia **técnica** sostiene idempotencia verificada en una instancia; la evidencia **humana** no está verificada y no se usa para afirmar aplicabilidad. No se sostiene idempotencia distribuida.
 
 ## 1. Propósito y marco
 
@@ -18,9 +18,9 @@ El ciclo sumativo juzga la versión final contra criterios congelados. Se apoya 
 
 - Comparación método vs. conducta actual (reintentos con espera fija, sin verificación ni idempotencia) sobre el mismo doble neutro.
 - Seis escenarios de E6; dos casos: CASO-A (`63442 / 4`, duplicado histórico) y CASO-B (`1598416 / 1`, control). El doble parte de cero y no siembra las 2 filas históricas de CASO-A; por tanto, **Dc10 no se ejercitó**. CASO-A se usa solo como llave lógica.
-- Muestra humana: P1 (Leonel Chamaca Lima) y P2 (Ernesto Gutierrez), casos distintos.
-- Observadora: Micaela Machicado.
-- P3 (Anahi Quisbert / CASO-C) se descartó por decisión del tesista y no se reporta.
+- Muestra humana: P1 (Leonel Chamaca Lima) y P2 (Anahi Quisbert), casos distintos.
+- Observador: Jose Luis Quispe.
+- P3 (CASO-C) se descartó por decisión del tesista y no se reporta.
 - La línea base se re-ejecutó (no se reutilizaron los números de E6), con 5 reintentos y espera fija de 1000 ms, equivalente a la producción.
 
 ## 3. Resultados técnicos

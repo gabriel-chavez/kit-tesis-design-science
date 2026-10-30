@@ -7,8 +7,8 @@
 | # | Documento | Firma |
 |:--|:--|:--|
 | 1 | `01_consentimiento_P1.md` | Participante P1 (Leonel Chamaca Lima) |
-| 2 | `02_consentimiento_P2.md` | Participante P2 (Ernesto Gutierrez) |
-| 3 | `03_declaracion_observadora.md` | Observadora (Micaela Machicado) |
+| 2 | `02_consentimiento_P2.md` | Participante P2 (Anahi Quisbert) |
+| 3 | `03_declaracion_observadora.md` | Observador (Jose Luis Quispe) |
 | 4 | `04_declaracion_tesista.md` | Tesista (Luis Gabriel Chavez Ramos) |
 | 5 | `hoja_observacion_P1_CASO-A.md` (ya existe, en la carpeta superior) | Participante, observadora y tesista |
 | 6 | `hoja_observacion_P2_CASO-B.md` (ya existe, en la carpeta superior) | Participante, observadora y tesista |
@@ -63,12 +63,12 @@ No se elige la segunda opción para "aprobar": se elige la que sea verdadera.
 | Documento | Persona | Firmado | Escaneado |
 |:--|:--|:--:|:--:|
 | Consentimiento P1 | Leonel Chamaca Lima | ☐ | ☐ |
-| Consentimiento P2 | Ernesto Gutierrez | ☐ | ☐ |
+| Consentimiento P2 | Anahi Quisbert | ☐ | ☐ |
 | Hoja de observación P1 | Leonel Chamaca Lima | ☐ | ☐ |
-| Hoja de observación P1 | Micaela Machicado | ☐ | ☐ |
+| Hoja de observación P1 | Jose Luis Quispe | ☐ | ☐ |
 | Hoja de observación P1 | Luis Gabriel Chavez Ramos | ☐ | ☐ |
-| Hoja de observación P2 | Ernesto Gutierrez | ☐ | ☐ |
-| Hoja de observación P2 | Micaela Machicado | ☐ | ☐ |
+| Hoja de observación P2 | Anahi Quisbert | ☐ | ☐ |
+| Hoja de observación P2 | Jose Luis Quispe | ☐ | ☐ |
 | Hoja de observación P2 | Luis Gabriel Chavez Ramos | ☐ | ☐ |
-| Declaración de la observadora | Micaela Machicado | ☐ | ☐ |
+| Declaración del observador | Jose Luis Quispe | ☐ | ☐ |
 | Declaración del tesista | Luis Gabriel Chavez Ramos | ☐ | ☐ |

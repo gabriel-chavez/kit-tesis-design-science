@@ -2,7 +2,7 @@
 
 | Campo | Dato |
 |:--|:--|
-| Participante | Ernesto Gutierrez |
+| Participante | Anahi Quisbert |
 | Código | P2 |
 | Caso evaluado | CASO-B (`1598416 / 1`) |
 | Fecha de la sesión | 2026-10-28, 11:00–11:55 |
@@ -53,9 +53,10 @@ Forma de identificación en la tesis:
 - ☐ Autorizo que aparezca mi **nombre completo**.
 - ☐ Prefiero aparecer con **iniciales** (si elige esta opción, las hojas se corrigen antes de firmar).
 
-| Nombre | C.I. | Firma | Fecha |
-|:--|:--|:--|:--|
-| Ernesto Gutierrez | | | |
+
+| Nombre              | C.I.      |                  Firma                  |       Fecha                  |
+|:--                  |:--        |:--        |:--                       |
+| Anahi Quisbert |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br> |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 
 **Observaciones del participante (opcional):**
 

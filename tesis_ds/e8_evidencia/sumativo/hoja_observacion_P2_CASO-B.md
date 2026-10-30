@@ -4,13 +4,13 @@
 
 | Campo | Valor |
 |:--|:--|
-| Participante | Ernesto Gutierrez |
+| Participante | Anahi Quisbert |
 | Código | P2 |
 | Caso | CASO-B (`1598416 / 1`) |
 | Fecha de la sesión | 2026-10-28 |
 | Hora inicio / fin | 11:00 / 11:55 |
 | Duración | 55 min 00 s |
-| Observadora | Micaela Machicado |
+| Observador | Jose Luis Quispe |
 | Versión evaluada | `ec9b8b6e8d37…` |
 | Fecha de llenado de esta hoja | 2026-10-28 |
 | Resultados técnicos anexados el | 2026-10-28 |
@@ -66,8 +66,8 @@ Control negativo: no ejecutado dentro de la sesión. Se ejecutó por caso en la 
 
 | Rol | Nombre | C.I. | Firma | Fecha |
 |:--|:--|:--|:--|:--|
-| Participante | Ernesto Gutierrez | | | |
-| Observadora | Micaela Machicado | | | |
+| Participante | Anahi Quisbert | | | |
+| Observador | Jose Luis Quispe | | | |
 | Tesista (responsable) | Luis Gabriel Chavez Ramos | | | |
 
 Al firmar, cada firmante declara haber leído el registro de esta hoja y que las respuestas y decisiones que se le atribuyen corresponden a lo que manifestó u observó en la sesión del 2026-10-28. La hoja fue transcrita el mismo día de la sesión.

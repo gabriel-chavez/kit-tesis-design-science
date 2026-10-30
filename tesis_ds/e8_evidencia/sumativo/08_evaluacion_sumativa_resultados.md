@@ -4,8 +4,8 @@
 **Artefacto:** `E7e_MetodoCompensacion` (netstandard2.0)
 **SHA-256:** `ec9b8b6e8d37374ff28f2eb816285571ede997c47ec44a235da829d13dbd10bf`
 **Doble:** `busa-eval-stub`, neutro, `localhost:5098`
-**Observadora:** Micaela Machicado
-**Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Ernesto Gutierrez, CASO-B)
+**Observador:** Jose Luis Quispe
+**Participantes:** P1 (Leonel Chamaca Lima, CASO-A) y P2 (Anahi Quisbert, CASO-B)
 
 
 ## 1. Medición técnica
@@ -76,12 +76,12 @@
 
 | Dato | P1 | P2 |
 |---|---|---|
-| Participante | Leonel Chamaca Lima | Ernesto Gutierrez |
+| Participante | Leonel Chamaca Lima | Anahi Quisbert |
 | Caso | CASO-A (`63442 / 4`) | CASO-B (`1598416 / 1`) |
 | Fecha | 2026-10-28 | 2026-10-28 |
 | Inicio / fin | 09:00 / 09:50 | 11:00 / 11:55 |
 | Duración | 50 min | 55 min |
-| Observadora | Micaela Machicado | Micaela Machicado |
+| Observador | Jose Luis Quispe | Jose Luis Quispe |
 
 ### 2.2 Decisiones por escenario
 

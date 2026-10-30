@@ -1,9 +1,9 @@
-# Declaración de la observadora
+# Declaración del observador
 
 | Campo | Dato |
 |:--|:--|
-| Nombre | Micaela Machicado |
-| Rol en la evaluación | Observadora |
+| Nombre | Jose Luis Quispe |
+| Rol en la evaluación | Observador |
 | Organización | |
 | Relación con el tesista | |
 | Fecha de la declaración | |
@@ -21,7 +21,7 @@ Si no estuvo presente en alguna, indíquelo aquí:
 
 ## 2. Independencia
 
-- ☐ No participé en el diseño del método ni soy autora del artefacto evaluado.
+- ☐ No participé en el diseño del método ni soy autor del artefacto evaluado.
 - ☐ No recibí instrucciones sobre el resultado esperado ni sobre lo que debía registrar.
 - Relación con el tesista (marque una):
   - ☐ Colega en la misma organización.
@@ -32,7 +32,7 @@ Si no estuvo presente en alguna, indíquelo aquí:
 
 Marque la situación que corresponda:
 
-- ☐ Completé el registro yo misma durante o inmediatamente después de la sesión.
+- ☐ Completé el registro yo mismo durante o inmediatamente después de la sesión.
 - ☐ El tesista transcribió mis notas; revisé el resultado y lo confirmo.
 - ☐ Otra situación. Describa:
 
@@ -59,7 +59,7 @@ Declaro que lo marcado en este documento es cierto y que el registro de las hoja
 
 | Firma | Fecha |
 |:--|:--|
-| | |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br> | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br> |
 
 **Observaciones adicionales:**
 

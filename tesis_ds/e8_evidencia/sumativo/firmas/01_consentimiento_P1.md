@@ -53,9 +53,9 @@ Forma de identificación en la tesis:
 - ☐ Autorizo que aparezca mi **nombre completo**.
 - ☐ Prefiero aparecer con **iniciales** (si elige esta opción, las hojas se corrigen antes de firmar).
 
-| Nombre | C.I. | Firma | Fecha |
-|:--|:--|:--|:--|
-| Leonel Chamaca Lima | | | |
+| Nombre              | C.I.      |                  Firma                  |       Fecha                  |
+|:--                  |:--        |:--        |:--                       |
+| Leonel Chamaca Lima |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br> |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 
 **Observaciones del participante (opcional):**
 
