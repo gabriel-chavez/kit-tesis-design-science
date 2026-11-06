@@ -48,7 +48,7 @@ La propuesta no tiene que ser software. El asesor admite como artefacto un méto
 
 ### `traductor-alsie` — traducción al modelo institucional
 
-Se usa **solo cuando la investigación ya está terminada** (todas las etapas E0–E10 cerradas). Toma los productos de `tesis_ds/`, los mapea y los reescribe en la estructura y el lenguaje del **Informe Final de Investigación (IFI) de ALSIE**, aplicando los indicadores de evaluación del nivel de maestría. No resume: vuelca el desarrollo completo de cada fase al apartado que le corresponde (solo el Resumen y la Introducción están acotados por la norma).
+Se usa **solo cuando la investigación ya está terminada** (todas las etapas E0–E10 cerradas). Toma los productos de `tesis_ds/`, los mapea y los reescribe en la estructura y el lenguaje del **Informe Final de Investigación (IFI) de ALSIE**, redactando cada apartado para la rúbrica de maestría de ALSIE (100 puntos) y autoevaluando el resultado con ella. No resume: vuelca el desarrollo completo de cada fase al apartado que le corresponde (solo el Resumen y la Introducción están acotados por la norma).
 
 Salida: el documento final en Markdown, `entrega_alsie/IFI_ALSIE.md`, con todos los apartados del modelo de ALSIE. Además produce un **anexo de mapeo** que documenta la equivalencia entre los elementos de Design Science y los del modelo de ALSIE, incluido en el propio IFI y también como archivo de trabajo `entrega_alsie/mapeo_ds_alsie.md`. Al cerrar, ofrece generar el **guion de defensa oral de 20 minutos** (`entrega_alsie/guion_defensa.md`) a partir del documento rector `plantillas/presentacion_defensa_alsie.md`. El agente consulta al tesista cuando le falta información y nunca inventa datos.
 
@@ -100,7 +100,8 @@ El kit está pensado para crecer. La estructura separa el paradigma (Design Scie
 instituciones/
 └── alsie/                        Normativa de ALSIE (solo en Markdown)
     ├── guia_ifi_contenido.md      Qué debe contener el IFI, punto a punto
-    ├── indicadores_revision_ifi.md Criterios de evaluación (nivel maestría)
+    ├── rubrica_maestria.md        Rúbrica puntuada de maestría (norma de evaluación vigente)
+    ├── indicadores_revision_ifi.md Indicadores de 2024 (complemento)
     └── README.md
 
 .opencode/agent/

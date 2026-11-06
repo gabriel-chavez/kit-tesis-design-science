@@ -81,8 +81,8 @@ Cada bloque de la defensa sale de un apartado del IFI y, en última instancia, d
 
 ### Bloque 4 — Objetivos e hipótesis (2 min)
 
-- **Qué decir:** objetivo general (verbo de conocimiento + objeto + para qué), objetivos específicos (uno por capítulo) y la hipótesis completa.
-- **Qué mostrar:** la hipótesis destacada, con la flecha "si se propone X con características Y, entonces se logra Z, porque M".
+- **Qué decir:** objetivo general («Proponer» + acción + para qué + población + lugar), objetivos específicos (uno por capítulo: Caracterizar, Sistematizar, Precisar, Elaborar) y la hipótesis completa.
+- **Qué mostrar:** la hipótesis destacada, en forma afirmativa: "X, con características Y, logra Z, dado que M" (lo que se propone + características esenciales + para qué).
 - **Qué evitar:** objetivos redactados como tareas ("desarrollar un módulo") en lugar de como producción de conocimiento; una hipótesis que no mencione el mecanismo.
 
 ### Bloque 5 — Diseño metodológico (1 min)
@@ -228,8 +228,8 @@ Los ejemplos usan el caso recurrente del kit: priorización de deuda técnica en
 
 **Título:** Objetivo e hipótesis
 
-- **Objetivo general:** fundamentar un modelo de priorización de deuda técnica que reduzca el tiempo de decisión de refactorización en sistemas legados con baja cobertura de pruebas.
-- **Hipótesis:** *Si el equipo prioriza con un modelo de dos dimensiones — impacto de cambio y riesgo de falla —, entonces reduce el tiempo de decisión y mejora la cobertura de los módulos intervenidos, porque concentra el esfuerzo en los módulos con mayor frecuencia de cambio y mayor probabilidad de regresión.*
+- **Objetivo general:** proponer un modelo de priorización de deuda técnica para reducir el tiempo de decisión de refactorización en el equipo de mantenimiento de un sistema bancario legado con baja cobertura de pruebas, en Bolivia.
+- **Hipótesis:** *Un modelo de priorización de dos dimensiones — impacto de cambio y riesgo de falla — reduce el tiempo de decisión y mejora la cobertura de los módulos intervenidos, dado que concentra el esfuerzo en los módulos con mayor frecuencia de cambio y mayor probabilidad de regresión.*
 
 ### Diapositiva 8 — Modelo teórico (3,5 min, dos diapositivas)
 
