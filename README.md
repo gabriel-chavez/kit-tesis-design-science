@@ -246,6 +246,17 @@ Escribe el resultado en entrega_alsie/guion_defensa.md, priorizando lo que el
 documento rector marca como irrenunciable.
 ```
 
+**Saltar solicitud de documentos externos (si el agente la pide)**
+
+```
+Ignora las notas de la normativa que citan documentos externos de ALSIE
+(*Resultados científicos*, *Normas de redacción del documento científico* y
+*Guía para la elaboración del IFI*). No me los pidas: resuélvelos con la rúbrica,
+la guía de contenido y APA 7 que ya están en el repositorio. Si un apartado queda
+incompleto, hazme una pregunta de contenido concreto (dato, decisión, estructura),
+nunca una petición de documento.
+```
+
 ---
 
 ## Estructura del repositorio
@@ -306,6 +317,8 @@ Los documentos normativos se guardan **solo en Markdown**. Los `.docx` originale
 **¿Sirve para doctorado?** No. Los agentes están calibrados exclusivamente para maestría.
 
 **¿El traductor reemplaza al asesor?** No. Son momentos distintos: uno construye, el otro traduce. Traducir sin investigación terminada produce un documento vacío.
+
+**¿El traductor pide documentos externos de ALSIE?** No. El traductor es autocontenido: las notas de la normativa que citan *Resultados científicos*, *Normas de redacción del documento científico* o la *Guía para la elaboración del IFI* se resuelven con la rúbrica, la guía y APA 7 ya incluidas. Si con una versión anterior del agente o con otro cliente te vuelve a pedir uno de esos documentos, copia y pega el prompt «Saltar solicitud de documentos externos» de la sección anterior.
 
 **¿Puedo usarlo con otra universidad?** Sí. Agrega su carpeta en `instituciones/` y su agente `traductor-<institucion>`. Hoy solo existe el de ALSIE.
 
