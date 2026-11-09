@@ -48,7 +48,7 @@ La propuesta no tiene que ser software. El asesor admite como artefacto un méto
 
 ### `traductor-alsie` — traducción al modelo institucional
 
-Se usa **solo cuando la investigación ya está terminada** (todas las etapas E0–E10 cerradas). Toma los productos de `tesis_ds/`, los mapea y los reescribe en la estructura y el lenguaje del **Informe Final de Investigación (IFI) de ALSIE**, aplicando los indicadores de evaluación del nivel de maestría. No resume: vuelca el desarrollo completo de cada fase al apartado que le corresponde (solo el Resumen y la Introducción están acotados por la norma).
+Se usa **solo cuando la investigación ya está terminada** (todas las etapas E0–E10 cerradas). Toma los productos de `tesis_ds/`, los mapea y los reescribe en la estructura y el lenguaje del **Informe Final de Investigación (IFI) de ALSIE**, redactando cada apartado para la rúbrica de maestría de ALSIE (100 puntos) y autoevaluando el resultado con ella. No resume: vuelca el desarrollo completo de cada fase al apartado que le corresponde (solo el Resumen y la Introducción están acotados por la norma).
 
 Salida: el documento final en Markdown, `entrega_alsie/IFI_ALSIE.md`, con todos los apartados del modelo de ALSIE. Además produce un **anexo de mapeo** que documenta la equivalencia entre los elementos de Design Science y los del modelo de ALSIE, incluido en el propio IFI y también como archivo de trabajo `entrega_alsie/mapeo_ds_alsie.md`. Al cerrar, ofrece generar el **guion de defensa oral de 20 minutos** (`entrega_alsie/guion_defensa.md`) a partir del documento rector `plantillas/presentacion_defensa_alsie.md`. El agente consulta al tesista cuando le falta información y nunca inventa datos.
 
@@ -100,7 +100,8 @@ El kit está pensado para crecer. La estructura separa el paradigma (Design Scie
 instituciones/
 └── alsie/                        Normativa de ALSIE (solo en Markdown)
     ├── guia_ifi_contenido.md      Qué debe contener el IFI, punto a punto
-    ├── indicadores_revision_ifi.md Criterios de evaluación (nivel maestría)
+    ├── rubrica_maestria.md        Rúbrica puntuada de maestría (norma de evaluación vigente)
+    ├── indicadores_revision_ifi.md Indicadores de 2024 (complemento)
     └── README.md
 
 .opencode/agent/
@@ -245,6 +246,17 @@ Escribe el resultado en entrega_alsie/guion_defensa.md, priorizando lo que el
 documento rector marca como irrenunciable.
 ```
 
+**Saltar solicitud de documentos externos (si el agente la pide)**
+
+```
+Ignora las notas de la normativa que citan documentos externos de ALSIE
+(*Resultados científicos*, *Normas de redacción del documento científico* y
+*Guía para la elaboración del IFI*). No me los pidas: resuélvelos con la rúbrica,
+la guía de contenido y APA 7 que ya están en el repositorio. Si un apartado queda
+incompleto, hazme una pregunta de contenido concreto (dato, decisión, estructura),
+nunca una petición de documento.
+```
+
 ---
 
 ## Estructura del repositorio
@@ -305,6 +317,8 @@ Los documentos normativos se guardan **solo en Markdown**. Los `.docx` originale
 **¿Sirve para doctorado?** No. Los agentes están calibrados exclusivamente para maestría.
 
 **¿El traductor reemplaza al asesor?** No. Son momentos distintos: uno construye, el otro traduce. Traducir sin investigación terminada produce un documento vacío.
+
+**¿El traductor pide documentos externos de ALSIE?** No. El traductor es autocontenido: las notas de la normativa que citan *Resultados científicos*, *Normas de redacción del documento científico* o la *Guía para la elaboración del IFI* se resuelven con la rúbrica, la guía y APA 7 ya incluidas. Si con una versión anterior del agente o con otro cliente te vuelve a pedir uno de esos documentos, copia y pega el prompt «Saltar solicitud de documentos externos» de la sección anterior.
 
 **¿Puedo usarlo con otra universidad?** Sí. Agrega su carpeta en `instituciones/` y su agente `traductor-<institucion>`. Hoy solo existe el de ALSIE.
 
