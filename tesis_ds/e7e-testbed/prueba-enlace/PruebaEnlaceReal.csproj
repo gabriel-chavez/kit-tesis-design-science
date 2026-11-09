@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>PruebaEnlaceReal</RootNamespace>
+    <AssemblyName>PruebaEnlaceReal</AssemblyName>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Cliente generado de BUSA, el mismo que usa CPagoSimple.cs:1096 -->
+    <Compile Include="C:\Users\lchavez\source\repos\UNIVidaNetPagosSimple-PasarelaQR\NegociosPagoSimple\Connected Services\wsUniQrService\Reference.cs">
+      <Link>Contrato\wsUniQrService.Reference.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+
+</Project>

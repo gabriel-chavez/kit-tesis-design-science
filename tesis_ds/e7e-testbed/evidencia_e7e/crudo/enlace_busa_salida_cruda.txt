@@ -1,0 +1,18 @@
+===== EJECUCION CRUDA - ENLACE DEL CLIENTE REAL DE BUSA =====
+Fecha: 2026-10-14 22:15:06
+Comando: dotnet run -- http://localhost:5098/UNIQRService/UNIQRService.svc ENLACE-1 2
+Codigo de salida: 0
+=============================================================
+
+=================================================================
+PRUEBA DE ENLACE CON EL CLIENTE WCF REAL DE BUSA
+BUSA  : http://localhost:5098/UNIQRService/UNIQRService.svc
+=================================================================
+
+
+--- 2. wsUniQrService.QRServiceClient.BunApi (2 invocaciones) ---
+  invocacion #1: OK  <ns2:Response xmlns:ns2=\"http://www.bancounion.com.bo/\"><ns2:ResultCode>0000</ns2:ResultCode><ns2:Message>Proceso Exit...
+  invocacion #2: OK  <ns2:Response xmlns:ns2=\"http://www.bancounion.com.bo/\"><ns2:ResultCode>0000</ns2:ResultCode><ns2:Message>Proceso Exit...
+  exitosas: 2 / 2
+
+RESULTADO GLOBAL: el cliente real de BUSA enlaza

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ArnesE7e</RootNamespace>
+    <AssemblyName>ArnesE7e</AssemblyName>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    ARNES DE VERIFICACION (E7e).
+
+    NO implementa el metodo: lo REFERENCIA. El codigo que produce la
+    evidencia de V1-V8 es el mismo que vive en el repositorio real, en
+    E7e_MetodoCompensacion. Si aqui hubiera una copia del metodo, la
+    evidencia seria de la copia y no del artefacto.
+
+    Este proyecto solo aporta:
+      - los ADAPTADORES que conectan el artefacto al doble neutro;
+      - los ESCENARIOS de fallo;
+      - la IMPRESION de la evidencia.
+  -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Source\Workspaces\UNIVidaNetPasarelaPagos\UNIVidaNetPasarelaPagos\E7e_MetodoCompensacion\E7e_MetodoCompensacion.csproj" />
+  </ItemGroup>
+
+</Project>
